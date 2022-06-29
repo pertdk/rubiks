@@ -1,0 +1,7 @@
+*.class
+Rubiks2DView/target/*
+Rubiks3DView/target/*
+RubiksController/target/*
+RubiksModel/target/*
+/stdout.txt
+/stderr.txt

@@ -1,0 +1,16 @@
+<<<<<<< HEAD
+C:\Users\PET\IdeaProjects\Rubiks\RubiksModel\src\main\java\dk\pert\Rubiks\RubiksModel\Direction.java
+C:\Users\PET\IdeaProjects\Rubiks\RubiksModel\src\main\java\dk\pert\Rubiks\RubiksModel\AbstractPiece.java
+C:\Users\PET\IdeaProjects\Rubiks\RubiksModel\src\main\java\dk\pert\Rubiks\RubiksModel\Surface.java
+C:\Users\PET\IdeaProjects\Rubiks\RubiksModel\src\main\java\dk\pert\Rubiks\RubiksModel\Color.java
+C:\Users\PET\IdeaProjects\Rubiks\RubiksModel\src\main\java\dk\pert\Rubiks\RubiksModel\Move.java
+=======
+C:\Users\PET\IdeaProjects\Rubiks\RubiksModel\src\main\java\dk\pert\rubiks\rubiksmodel\CornerPiece.java
+C:\Users\PET\IdeaProjects\Rubiks\RubiksModel\src\main\java\dk\pert\rubiks\rubiksmodel\Cube.java
+C:\Users\PET\IdeaProjects\Rubiks\RubiksModel\src\main\java\dk\pert\rubiks\rubiksmodel\Direction.java
+C:\Users\PET\IdeaProjects\Rubiks\RubiksModel\src\main\java\dk\pert\rubiks\rubiksmodel\AbstractPiece.java
+C:\Users\PET\IdeaProjects\Rubiks\RubiksModel\src\main\java\dk\pert\rubiks\rubiksmodel\CenterPiece.java
+C:\Users\PET\IdeaProjects\Rubiks\RubiksModel\src\main\java\dk\pert\rubiks\rubiksmodel\Color.java
+C:\Users\PET\IdeaProjects\Rubiks\RubiksModel\src\main\java\dk\pert\rubiks\rubiksmodel\EdgePiece.java
+C:\Users\PET\IdeaProjects\Rubiks\RubiksModel\src\main\java\dk\pert\rubiks\rubiksmodel\Move.java
+>>>>>>> 20defcf (restructured)

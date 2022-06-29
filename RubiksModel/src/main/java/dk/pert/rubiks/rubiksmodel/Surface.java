@@ -1,4 +1,4 @@
-package dk.pert.Rubiks.RubiksModel;
+package dk.pert.rubiks.rubiksmodel;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -15,7 +15,7 @@ public abstract class AbstractPiece {
         if (noOfSurfaces < 1 || noOfSurfaces > 3) {
             throw new IllegalArgumentException(String.format("Illegal number of surfaces: %o. Must be 1,2 or 3.", noOfSurfaces));
         }
-        this.surfaces = new HashMap<Direction, Color>(noOfSurfaces);
+        this.surfaces = new HashMap<>(noOfSurfaces);
     }
 
     protected void setSurface(Direction direction, Color color) throws IllegalArgumentException {
@@ -38,6 +38,11 @@ public abstract class AbstractPiece {
         return surfaces.get(direction);
     }
 
+    protected void moveColor(Direction before, Direction after) {
+        Color color = surfaces.get(before);
+        surfaces.remove(before);
+        surfaces.put(after, color);
+    }
 
     protected abstract void moveLeft();
 

@@ -15,61 +15,61 @@ public class CenterPiece extends AbstractPiece {
 
     @Override
     protected void moveLeft() {
-        /* CenterPieces will never move, unless you rotate the entire cube */
+        /* CenterPieces will never move */
     }
 
     @Override
     protected void moveLeftInverted() {
-        /* CenterPieces will never move, unless you rotate the entire cube */
+        /* CenterPieces will never move */
     }
 
     @Override
     protected void moveRight() {
-        /* CenterPieces will never move, unless you rotate the entire cube */
+        /* CenterPieces will never move */
     }
 
     @Override
     protected void moveRightInverted() {
-        /* CenterPieces will never move, unless you rotate the entire cube */
+        /* CenterPieces will never move */
     }
 
     @Override
     protected void moveUp() {
-        /* CenterPieces will never move, unless you rotate the entire cube */
+        /* CenterPieces will never move */
     }
 
     @Override
     protected void moveUpInverted() {
-        /* CenterPieces will never move, unless you rotate the entire cube */
+        /* CenterPieces will never move */
     }
 
     @Override
     protected void moveDown() {
-        /* CenterPieces will never move, unless you rotate the entire cube */
+        /* CenterPieces will never move */
     }
 
     @Override
     protected void moveDownInverted() {
-        /* CenterPieces will never move, unless you rotate the entire cube */
+        /* CenterPieces will never move */
     }
 
     @Override
     protected void moveFront() {
-        /* CenterPieces will never move, unless you rotate the entire cube */
+        /* CenterPieces will never move */
     }
 
     @Override
     protected void moveFrontInverted() {
-        /* CenterPieces will never move, unless you rotate the entire cube */
+        /* CenterPieces will never move */
     }
 
     @Override
     protected void moveBack() {
-        /* CenterPieces will never move, unless you rotate the entire cube */
+        /* CenterPieces will never move */
     }
 
     @Override
     protected void moveBackInverted() {
-        /* CenterPieces will never move, unless you rotate the entire cube */
+        /* CenterPieces will never move */
     }
 }

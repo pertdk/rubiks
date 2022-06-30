@@ -14,123 +14,171 @@ public class EdgePiece extends AbstractPiece {
         setSurface(direction2, color2);
     }
 
+    private void moveBack2Up() {
+        moveColor(Direction.back, Direction.up);
+    }
+
+    private void moveUp2Front() {
+        moveColor(Direction.up, Direction.front);
+    }
+
+    private void moveFront2Down() {
+        moveColor(Direction.front, Direction.down);
+    }
+
+    private void moveDown2Back() {
+        moveColor(Direction.down, Direction.back);
+    }
+
+    private void moveBack2Down() {
+        moveColor(Direction.back, Direction.down);
+    }
+
+    private void moveDown2Front() {
+        moveColor(Direction.down, Direction.front);
+    }
+
+    private void moveFront2Up() {
+        moveColor(Direction.front, Direction.up);
+    }
+
+    private void moveUp2Back() {
+        moveColor(Direction.up, Direction.back);
+    }
+
+    private void moveLeft2Back() {
+        moveColor(Direction.left, Direction.back);
+    }
+
+    private void moveBack2Right() {
+        moveColor(Direction.back, Direction.right);
+    }
+
+    private void moveRight2Front() {
+        moveColor(Direction.right, Direction.front);
+    }
+
+    private void moveFront2Left() {
+        moveColor(Direction.left, Direction.up);
+    }
+
+    private void moveLeft2Front() {
+        moveColor(Direction.left, Direction.front);
+    }
+
+    private void moveFront2Right() {
+        moveColor(Direction.front, Direction.right);
+    }
+
+    private void moveRight2Back() {
+        moveColor(Direction.right, Direction.back);
+    }
+
+    private void moveBack2Left() {
+        moveColor(Direction.back, Direction.left);
+    }
+
+    private void moveUp2Right() {
+        moveColor(Direction.up, Direction.right);
+    }
+
+    private void moveRight2Down() {
+        moveColor(Direction.right, Direction.down);
+    }
+
+    private void moveDown2Left() {
+        moveColor(Direction.down, Direction.left);
+    }
+
+    private void moveLeft2Up() {
+        moveColor(Direction.left, Direction.up);
+    }
+
+    private void moveUp2Left() {
+        moveColor(Direction.up, Direction.left);
+    }
+
+    private void moveLeft2Down() {
+        moveColor(Direction.left, Direction.down);
+    }
+
+    private void moveDown2Right() {
+        moveColor(Direction.down, Direction.right);
+    }
+
+    private void moveRight2Up() {
+        moveColor(Direction.right, Direction.up);
+    }
+
     private void turnClockwiseAroundXAxis() {
         if (surfaces.containsKey(Direction.back)) {
-            Color color = surfaces.get(Direction.back);
-            surfaces.remove(Direction.back);
-            surfaces.put(Direction.up, color);
+            moveBack2Up();
         } else if (surfaces.containsKey(Direction.up)) {
-            Color color = surfaces.get(Direction.up);
-            surfaces.remove(Direction.up);
-            surfaces.put(Direction.front, color);
+            moveUp2Front();
         } else if (surfaces.containsKey(Direction.front)) {
-            Color color = surfaces.get(Direction.front);
-            surfaces.remove(Direction.front);
-            surfaces.put(Direction.down, color);
+            moveFront2Down();
         } else if (surfaces.containsKey(Direction.down)) {
-            Color color = surfaces.get(Direction.down);
-            surfaces.remove(Direction.down);
-            surfaces.put(Direction.back, color);
+            moveDown2Back();
         }
     }
 
     private void turnCounterclockwiseAroundXAxis() {
         if (surfaces.containsKey(Direction.back)) {
-            Color color = surfaces.get(Direction.back);
-            surfaces.remove(Direction.back);
-            surfaces.put(Direction.down, color);
+            moveBack2Down();
         } else if (surfaces.containsKey(Direction.down)) {
-            Color color = surfaces.get(Direction.down);
-            surfaces.remove(Direction.down);
-            surfaces.put(Direction.front, color);
+            moveDown2Front();
         } else if (surfaces.containsKey(Direction.front)) {
-            Color color = surfaces.get(Direction.front);
-            surfaces.remove(Direction.front);
-            surfaces.put(Direction.up, color);
+            moveFront2Up();
         } else if (surfaces.containsKey(Direction.up)) {
-            Color color = surfaces.get(Direction.up);
-            surfaces.remove(Direction.up);
-            surfaces.put(Direction.back, color);
+            moveUp2Back();
         }
     }
 
     private void turnClockwiseAroundYAxis() {
         if (surfaces.containsKey(Direction.left)) {
-            Color color = surfaces.get(Direction.left);
-            surfaces.remove(Direction.left);
-            surfaces.put(Direction.back, color);
+            moveLeft2Back();
         } else if (surfaces.containsKey(Direction.back)) {
-            Color color = surfaces.get(Direction.back);
-            surfaces.remove(Direction.back);
-            surfaces.put(Direction.right, color);
+            moveBack2Right();
         } else if (surfaces.containsKey(Direction.right)) {
-            Color color = surfaces.get(Direction.right);
-            surfaces.remove(Direction.right);
-            surfaces.put(Direction.front, color);
+            moveRight2Front();
         } else if (surfaces.containsKey(Direction.front)) {
-            Color color = surfaces.get(Direction.front);
-            surfaces.remove(Direction.front);
-            surfaces.put(Direction.left, color);
+            moveFront2Left();
         }
     }
 
     private void turnCounterclockwiseAroundYAxis() {
         if (surfaces.containsKey(Direction.left)) {
-            Color color = surfaces.get(Direction.left);
-            surfaces.remove(Direction.left);
-            surfaces.put(Direction.front, color);
+            moveLeft2Front();
         } else if (surfaces.containsKey(Direction.front)) {
-            Color color = surfaces.get(Direction.front);
-            surfaces.remove(Direction.front);
-            surfaces.put(Direction.right, color);
+            moveFront2Right();
         } else if (surfaces.containsKey(Direction.right)) {
-            Color color = surfaces.get(Direction.right);
-            surfaces.remove(Direction.right);
-            surfaces.put(Direction.back, color);
+            moveRight2Back();
         } else if (surfaces.containsKey(Direction.back)) {
-            Color color = surfaces.get(Direction.back);
-            surfaces.remove(Direction.back);
-            surfaces.put(Direction.left, color);
+            moveBack2Left();
         }
     }
 
     private void turnClockwiseAroundZAxis() {
         if (surfaces.containsKey(Direction.up)) {
-            Color color = surfaces.get(Direction.up);
-            surfaces.remove(Direction.up);
-            surfaces.put(Direction.right, color);
+            moveUp2Right();
         } else if (surfaces.containsKey(Direction.right)) {
-            Color color = surfaces.get(Direction.right);
-            surfaces.remove(Direction.right);
-            surfaces.put(Direction.down, color);
+            moveRight2Down();
         } else if (surfaces.containsKey(Direction.down)) {
-            Color color = surfaces.get(Direction.down);
-            surfaces.remove(Direction.down);
-            surfaces.put(Direction.left, color);
+            moveDown2Left();
         } else if (surfaces.containsKey(Direction.left)) {
-            Color color = surfaces.get(Direction.left);
-            surfaces.remove(Direction.left);
-            surfaces.put(Direction.up, color);
+            moveLeft2Up();
         }
     }
 
     private void turnCounterclockwiseAroundZAxis() {
         if (surfaces.containsKey(Direction.up)) {
-            Color color = surfaces.get(Direction.up);
-            surfaces.remove(Direction.up);
-            surfaces.put(Direction.left, color);
+            moveUp2Left();
         } else if (surfaces.containsKey(Direction.left)) {
-            Color color = surfaces.get(Direction.left);
-            surfaces.remove(Direction.left);
-            surfaces.put(Direction.down, color);
+            moveLeft2Down();
         } else if (surfaces.containsKey(Direction.down)) {
-            Color color = surfaces.get(Direction.down);
-            surfaces.remove(Direction.down);
-            surfaces.put(Direction.right, color);
+            moveDown2Right();
         } else if (surfaces.containsKey(Direction.right)) {
-            Color color = surfaces.get(Direction.right);
-            surfaces.remove(Direction.right);
-            surfaces.put(Direction.up, color);
+            moveRight2Up();
         }
     }
 

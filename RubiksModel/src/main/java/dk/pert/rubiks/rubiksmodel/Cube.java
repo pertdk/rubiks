@@ -15,7 +15,7 @@ public class Cube {
     public static final int BACK = 2;
     public static final int CENTER = 1;
 
-    private AbstractPiece[][][] pieces;
+    private final AbstractPiece[][][] pieces;
 
     private void createCenterPieces() {
         /* Notice all center pieces have exactly two CENTER coordinates */

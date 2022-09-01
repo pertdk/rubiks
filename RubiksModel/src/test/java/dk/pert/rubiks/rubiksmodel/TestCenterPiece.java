@@ -63,6 +63,7 @@ class TestCenterPiece {
             colorNo++;
         }
         LOGGER.info(logMessage);
+        System.out.println(logMessage);
     }
 
     @Test

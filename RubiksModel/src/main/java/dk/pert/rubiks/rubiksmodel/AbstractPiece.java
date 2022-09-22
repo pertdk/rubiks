@@ -33,7 +33,7 @@ public abstract class AbstractPiece {
             throw new NullPointerException("this.surfaces is null!");
         }
         if (!surfaces.containsKey(direction)) {
-            throw new IllegalArgumentException("No such direction set in this piece.");
+                throw new IllegalArgumentException("No such direction set in this piece.");
         }
         return surfaces.get(direction);
     }

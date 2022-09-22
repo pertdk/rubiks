@@ -25,26 +25,30 @@ class TestCenterPiece {
     }
 
 
-    @Test
-    void moveLeft() {
+    void move(Move move) {
         StringBuilder logMessage = new StringBuilder();
+        logMessage.append(String.format("Move: %s\n", move));
+
         ArrayList<Direction> otherDirections = new ArrayList<>(EnumSet.allOf(Direction.class));
         ArrayList<Color> otherColors = new ArrayList<>(EnumSet.allOf(Color.class));
 
         int directionNo = 0;
         int colorNo = 0;
+
         while (directionNo < directions.size() && colorNo < colors.size()) {
             Direction currentDirection = directions.get(directionNo);
             Color currentColor = colors.get(colorNo);
             otherDirections.remove(directionNo);
             otherColors.remove(colorNo);
+
             logMessage.append(String.format("currentColor: %s currentDirection: %s\n", currentColor, currentDirection));
 
             CenterPiece centerPiece = new CenterPiece(currentDirection, currentColor);
             Color colorRetrieved = centerPiece.getSurface(currentDirection);
             Assertions.assertEquals(colorRetrieved, currentColor);
 
-            centerPiece.moveLeft();
+            centerPiece.move(move);
+
             int otherDirectionNo = 0;
             int otherColorNo = 0;
             while (otherDirectionNo < otherDirections.size() && otherColorNo < otherColors.size()) {
@@ -63,50 +67,65 @@ class TestCenterPiece {
             colorNo++;
         }
         LOGGER.info(logMessage);
-        System.out.println(logMessage);
+    }
+
+    @Test
+    void moveLeft() {
+        move(Move.left);
     }
 
     @Test
     void moveLeftInverted() {
+        move(Move.leftInverted);
     }
 
     @Test
     void moveRight() {
+        move(Move.right);
     }
 
     @Test
     void moveRightInverted() {
+        move(Move.rightInverted);
     }
 
     @Test
     void moveUp() {
+        move(Move.up);
     }
 
     @Test
     void moveUpInverted() {
+        move(Move.upInverted);
     }
 
     @Test
     void moveDown() {
+        move(Move.down);
     }
 
     @Test
     void moveDownInverted() {
+        move(Move.downInverted);
     }
 
     @Test
     void moveFront() {
+        move(Move.front);
     }
 
     @Test
     void moveFrontInverted() {
+        move(Move.frontInverted);
     }
 
     @Test
     void moveBack() {
+        move(Move.back);
     }
 
     @Test
     void moveBackInverted() {
+        move(Move.backInverted);
     }
 }

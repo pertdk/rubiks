@@ -41,13 +41,15 @@ class TestCenterPiece {
             otherDirections.remove(directionNo);
             otherColors.remove(colorNo);
 
-            logMessage.append(String.format("currentColor: %s currentDirection: %s\n", currentColor, currentDirection));
+            logMessage.append(String.format("currentDirection: %s currentColor: %s\n", currentDirection, currentColor));
 
             CenterPiece centerPiece = new CenterPiece(currentDirection, currentColor);
             Color colorRetrieved = centerPiece.getSurface(currentDirection);
             Assertions.assertEquals(colorRetrieved, currentColor);
 
             centerPiece.move(move);
+            Color movedColor = centerPiece.getSurface(currentDirection);
+            Assertions.assertEquals(movedColor, currentColor);
 
             int otherDirectionNo = 0;
             int otherColorNo = 0;
@@ -56,7 +58,7 @@ class TestCenterPiece {
                 IllegalArgumentException thrown;
                 thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> centerPiece.getSurface(otherDirection));
                 logMessage.append(String.format("\t-- otherDirection: %s\n", otherDirection));
-                Assertions.assertEquals("No such direction set in this piece.", thrown.getMessage());
+                Assertions.assertEquals(AbstractPiece.NO_SUCH_DIRECTION, thrown.getMessage());
                 otherDirectionNo++;
                 otherColorNo++;
             }
@@ -127,5 +129,54 @@ class TestCenterPiece {
     @Test
     void moveBackInverted() {
         move(Move.backInverted);
+    }
+
+    @Test
+    void setSurface() {
+        StringBuilder logMessage = new StringBuilder();
+        logMessage.append("setSurface");
+
+        ArrayList<Direction> otherDirections = new ArrayList<>(EnumSet.allOf(Direction.class));
+        ArrayList<Color> otherColors = new ArrayList<>(EnumSet.allOf(Color.class));
+
+        int directionNo = 0;
+        int colorNo = 0;
+
+        while (directionNo < directions.size() && colorNo < colors.size()) {
+            Direction currentDirection = directions.get(directionNo);
+            Color currentColor = colors.get(colorNo);
+            otherDirections.remove(directionNo);
+            otherColors.remove(colorNo);
+
+            logMessage.append(String.format("currentDirection: %s currentColor: %s\n", currentDirection, currentColor));
+
+            CenterPiece centerPiece = new CenterPiece(currentDirection, currentColor);
+            Color colorRetrieved = centerPiece.getSurface(currentDirection);
+            Assertions.assertEquals(colorRetrieved, currentColor);
+
+            IllegalArgumentException thrownCurrent;
+            thrownCurrent = Assertions.assertThrows(IllegalArgumentException.class, () -> centerPiece.setSurface(currentDirection, currentColor));
+            Assertions.assertEquals(AbstractPiece.ALL_SURFACES_ALREADY_SET, thrownCurrent.getMessage());
+
+            int otherDirectionNo = 0;
+            int otherColorNo = 0;
+            while (otherDirectionNo < otherDirections.size() && otherColorNo < otherColors.size()) {
+                Direction otherDirection = otherDirections.get(otherDirectionNo);
+                Color otherColor = otherColors.get(otherColorNo);
+                IllegalArgumentException thrownOther;
+                thrownOther = Assertions.assertThrows(IllegalArgumentException.class, () -> centerPiece.setSurface(otherDirection, otherColor));
+                logMessage.append(String.format("\t-- otherDirection: %s\n", otherDirection));
+                Assertions.assertEquals(AbstractPiece.ALL_SURFACES_ALREADY_SET, thrownOther.getMessage());
+                otherDirectionNo++;
+                otherColorNo++;
+            }
+
+            otherDirections.add(directionNo, currentDirection);
+            otherColors.add(colorNo, currentColor);
+            directionNo++;
+            colorNo++;
+        }
+        LOGGER.info(logMessage);
+
     }
 }

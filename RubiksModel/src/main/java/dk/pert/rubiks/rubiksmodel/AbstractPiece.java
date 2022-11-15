@@ -9,31 +9,54 @@ import java.util.HashMap;
  */
 
 public abstract class AbstractPiece {
+    public static final String ILLEGAL_NUMBER_OF_SURFACES_FORMAT = "Illegal number of surfaces: %o. Must be 1,2 or 3.";
+    public static final String ALL_SURFACES_ALREADY_SET = "All surfaces are already set.";
+    public static final String ONE_PIECE_ONE_COLOR = "A piece can only have one color in each direction.";
+    public static final String EACH_DIR_SEPARATE_COLOR = "Each direction must have a separate color.";
+    public static final String SURFACE_IS_NULL = "this.surfaces is null!";
+    public static final String NO_SUCH_DIRECTION = "No such direction set in this piece.";
+    protected int noOfSurfaces;
     protected HashMap<Direction, Color> surfaces;
 
     protected AbstractPiece(int noOfSurfaces) throws IllegalArgumentException {
+        setNoOfSurfaces(noOfSurfaces);
+        initSurfaces();
+    }
+
+    private void setNoOfSurfaces(int noOfSurfaces) {
         if (noOfSurfaces < 1 || noOfSurfaces > 3) {
-            throw new IllegalArgumentException(String.format("Illegal number of surfaces: %o. Must be 1,2 or 3.", noOfSurfaces));
+            throw new IllegalArgumentException(String.format(ILLEGAL_NUMBER_OF_SURFACES_FORMAT, noOfSurfaces));
         }
-        this.surfaces = new HashMap<>(noOfSurfaces);
+        this.noOfSurfaces = noOfSurfaces;
+    }
+
+    private int getNoOfSurfaces() {
+        return this.noOfSurfaces;
+    }
+
+    private void initSurfaces() {
+        this.surfaces = new HashMap<>(this.noOfSurfaces);
     }
 
     protected void setSurface(Direction direction, Color color) throws IllegalArgumentException {
+        if (surfaces.size() == getNoOfSurfaces()) {
+            throw new IllegalArgumentException(ALL_SURFACES_ALREADY_SET);
+        }
         if (surfaces.containsKey(direction)) {
-            throw new IllegalArgumentException("A piece can only have one color in each direction");
+            throw new IllegalArgumentException(ONE_PIECE_ONE_COLOR);
         }
         if (surfaces.containsValue(color)) {
-            throw new IllegalArgumentException("Each direction must have a separate color");
+            throw new IllegalArgumentException(EACH_DIR_SEPARATE_COLOR);
         }
         this.surfaces.put(direction, color);
     }
 
     public Color getSurface(Direction direction) {
         if (surfaces == null) {
-            throw new NullPointerException("this.surfaces is null!");
+            throw new NullPointerException(SURFACE_IS_NULL);
         }
         if (!surfaces.containsKey(direction)) {
-                throw new IllegalArgumentException("No such direction set in this piece.");
+            throw new IllegalArgumentException(NO_SUCH_DIRECTION);
         }
         return surfaces.get(direction);
     }

@@ -14,8 +14,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class Surface {
-    private Color color;
     private Direction direction;
+    private Color color;
 
     /**
      * Implementation of the Rubik's L-move regarding a surface

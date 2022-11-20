@@ -13,7 +13,6 @@ public abstract class AbstractPiece {
     public static final String ALL_SURFACES_ALREADY_SET = "All surfaces are already set.";
     public static final String ONE_PIECE_ONE_COLOR = "A piece can only have one color in each direction.";
     public static final String EACH_DIR_SEPARATE_COLOR = "Each direction must have a separate color.";
-    public static final String SURFACE_IS_NULL = "this.surfaces is null!";
     public static final String NO_SUCH_DIRECTION = "No such direction set in this piece.";
     protected int noOfSurfaces;
     protected HashMap<Direction, Color> surfaces;
@@ -52,9 +51,6 @@ public abstract class AbstractPiece {
     }
 
     public Color getSurface(Direction direction) {
-        if (surfaces == null) {
-            throw new NullPointerException(SURFACE_IS_NULL);
-        }
         if (!surfaces.containsKey(direction)) {
             throw new IllegalArgumentException(NO_SUCH_DIRECTION);
         }

@@ -18,10 +18,8 @@ class TestCenterPiece {
 
     @BeforeEach
     void beforeEach() {
-        directions = new ArrayList<>();
-        directions.addAll(EnumSet.allOf(Direction.class));
-        colors = new ArrayList<>();
-        colors.addAll(EnumSet.allOf(Color.class));
+        directions = new ArrayList<>(EnumSet.allOf(Direction.class));
+        colors = new ArrayList<>(EnumSet.allOf(Color.class));
     }
 
 

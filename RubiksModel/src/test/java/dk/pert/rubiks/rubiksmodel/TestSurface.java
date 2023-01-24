@@ -13,10 +13,15 @@ public class TestSurface {
     private HashMap<Direction, Surface> directionSurfaceHashMap;
     private HashMap<Color, Surface> colorSurfaceHashMap;
 
-    @BeforeEach
-    void beforeAll() {
-        ArrayList<Direction> directions = new ArrayList<>(EnumSet.allOf(Direction.class));
-        ArrayList<Color> colors = new ArrayList<>(EnumSet.allOf(Color.class));
+    private ArrayList<Direction> generateListOfAllDirections() {
+        return new ArrayList<>(EnumSet.allOf(Direction.class));
+    }
+
+    private ArrayList<Color> generateListOfAllColors() {
+        return new ArrayList<>(EnumSet.allOf(Color.class));
+    }
+
+    private void generateSurfaceHashMaps(ArrayList<Direction> directions, ArrayList<Color> colors) {
         directionSurfaceHashMap = new HashMap<>();
         colorSurfaceHashMap = new HashMap<>();
         int directionNo = 0;
@@ -32,7 +37,15 @@ public class TestSurface {
         }
     }
 
-    private void noMoveTest(Direction direction, Move move) {
+    @BeforeEach
+    void beforeAll() {
+        ArrayList<Direction> directions = generateListOfAllDirections();
+        ArrayList<Color> colors = generateListOfAllColors();
+        generateSurfaceHashMaps(directions, colors);
+    }
+
+
+    private void testSurfaceDidNotChangeDirection(Direction direction, Move move) {
         Surface testSurface = directionSurfaceHashMap.get(direction);
         Direction beforeTestDirection = testSurface.getDirection();
         Assertions.assertEquals(beforeTestDirection, direction);
@@ -41,7 +54,7 @@ public class TestSurface {
         Assertions.assertEquals(afterTestDirection, direction);
     }
 
-    private void moveTest(Direction beforeDirection, Direction afterDirection, Move move) {
+    private void testSurfaceDidChangeDirection(Direction beforeDirection, Direction afterDirection, Move move) {
         Surface testSurface = directionSurfaceHashMap.get(beforeDirection);
         Direction beforeTestDirection = testSurface.getDirection();
         Assertions.assertEquals(beforeTestDirection, beforeDirection);
@@ -55,134 +68,134 @@ public class TestSurface {
     @Test
     void left() {
         Move leftMove = Move.left;
-        noMoveTest(Direction.left, leftMove);
-        noMoveTest(Direction.right, leftMove);
-        moveTest(Direction.down, Direction.back, leftMove);
-        moveTest(Direction.back, Direction.up, leftMove);
-        moveTest(Direction.up, Direction.front, leftMove);
-        moveTest(Direction.front, Direction.down, leftMove);
+        testSurfaceDidNotChangeDirection(Direction.left, leftMove);
+        testSurfaceDidNotChangeDirection(Direction.right, leftMove);
+        testSurfaceDidChangeDirection(Direction.down, Direction.back, leftMove);
+        testSurfaceDidChangeDirection(Direction.back, Direction.up, leftMove);
+        testSurfaceDidChangeDirection(Direction.up, Direction.front, leftMove);
+        testSurfaceDidChangeDirection(Direction.front, Direction.down, leftMove);
     }
 
     @Test
     void leftInverted() {
         Move leftInvertedMove = Move.leftInverted;
-        noMoveTest(Direction.left, leftInvertedMove);
-        noMoveTest(Direction.right, leftInvertedMove);
-        moveTest(Direction.down, Direction.front, leftInvertedMove);
-        moveTest(Direction.front, Direction.up, leftInvertedMove);
-        moveTest(Direction.up, Direction.back, leftInvertedMove);
-        moveTest(Direction.back, Direction.down, leftInvertedMove);
+        testSurfaceDidNotChangeDirection(Direction.left, leftInvertedMove);
+        testSurfaceDidNotChangeDirection(Direction.right, leftInvertedMove);
+        testSurfaceDidChangeDirection(Direction.down, Direction.front, leftInvertedMove);
+        testSurfaceDidChangeDirection(Direction.front, Direction.up, leftInvertedMove);
+        testSurfaceDidChangeDirection(Direction.up, Direction.back, leftInvertedMove);
+        testSurfaceDidChangeDirection(Direction.back, Direction.down, leftInvertedMove);
     }
 
     @Test
     void right() {
         Move rightMove = Move.right;
-        noMoveTest(Direction.right, rightMove);
-        noMoveTest(Direction.left, rightMove);
-        moveTest(Direction.down, Direction.front, rightMove);
-        moveTest(Direction.front, Direction.up, rightMove);
-        moveTest(Direction.up, Direction.back, rightMove);
-        moveTest(Direction.back, Direction.down, rightMove);
+        testSurfaceDidNotChangeDirection(Direction.right, rightMove);
+        testSurfaceDidNotChangeDirection(Direction.left, rightMove);
+        testSurfaceDidChangeDirection(Direction.down, Direction.front, rightMove);
+        testSurfaceDidChangeDirection(Direction.front, Direction.up, rightMove);
+        testSurfaceDidChangeDirection(Direction.up, Direction.back, rightMove);
+        testSurfaceDidChangeDirection(Direction.back, Direction.down, rightMove);
     }
 
     @Test
     void rightInverted() {
         Move rightInvertedMove = Move.rightInverted;
-        noMoveTest(Direction.right, rightInvertedMove);
-        noMoveTest(Direction.left, rightInvertedMove);
-        moveTest(Direction.down, Direction.back, rightInvertedMove);
-        moveTest(Direction.back, Direction.up, rightInvertedMove);
-        moveTest(Direction.up, Direction.front, rightInvertedMove);
-        moveTest(Direction.front, Direction.down, rightInvertedMove);
+        testSurfaceDidNotChangeDirection(Direction.right, rightInvertedMove);
+        testSurfaceDidNotChangeDirection(Direction.left, rightInvertedMove);
+        testSurfaceDidChangeDirection(Direction.down, Direction.back, rightInvertedMove);
+        testSurfaceDidChangeDirection(Direction.back, Direction.up, rightInvertedMove);
+        testSurfaceDidChangeDirection(Direction.up, Direction.front, rightInvertedMove);
+        testSurfaceDidChangeDirection(Direction.front, Direction.down, rightInvertedMove);
     }
 
     @Test
     void front() {
         Move frontMove = Move.front;
-        noMoveTest(Direction.front, frontMove);
-        noMoveTest(Direction.back, frontMove);
-        moveTest(Direction.down, Direction.left, frontMove);
-        moveTest(Direction.left, Direction.up, frontMove);
-        moveTest(Direction.up, Direction.right, frontMove);
-        moveTest(Direction.right, Direction.down, frontMove);
+        testSurfaceDidNotChangeDirection(Direction.front, frontMove);
+        testSurfaceDidNotChangeDirection(Direction.back, frontMove);
+        testSurfaceDidChangeDirection(Direction.down, Direction.left, frontMove);
+        testSurfaceDidChangeDirection(Direction.left, Direction.up, frontMove);
+        testSurfaceDidChangeDirection(Direction.up, Direction.right, frontMove);
+        testSurfaceDidChangeDirection(Direction.right, Direction.down, frontMove);
     }
 
     @Test
     void frontInverted() {
         Move frontInvertedMove = Move.frontInverted;
-        noMoveTest(Direction.back, frontInvertedMove);
-        noMoveTest(Direction.front, frontInvertedMove);
-        moveTest(Direction.down, Direction.right, frontInvertedMove);
-        moveTest(Direction.right, Direction.up, frontInvertedMove);
-        moveTest(Direction.up, Direction.left, frontInvertedMove);
-        moveTest(Direction.left, Direction.down, frontInvertedMove);
+        testSurfaceDidNotChangeDirection(Direction.back, frontInvertedMove);
+        testSurfaceDidNotChangeDirection(Direction.front, frontInvertedMove);
+        testSurfaceDidChangeDirection(Direction.down, Direction.right, frontInvertedMove);
+        testSurfaceDidChangeDirection(Direction.right, Direction.up, frontInvertedMove);
+        testSurfaceDidChangeDirection(Direction.up, Direction.left, frontInvertedMove);
+        testSurfaceDidChangeDirection(Direction.left, Direction.down, frontInvertedMove);
     }
 
     @Test
     void back() {
         Move backMove = Move.back;
-        noMoveTest(Direction.back, backMove);
-        noMoveTest(Direction.front, backMove);
-        moveTest(Direction.down, Direction.right, backMove);
-        moveTest(Direction.right, Direction.up, backMove);
-        moveTest(Direction.up, Direction.left, backMove);
-        moveTest(Direction.left, Direction.down, backMove);
+        testSurfaceDidNotChangeDirection(Direction.back, backMove);
+        testSurfaceDidNotChangeDirection(Direction.front, backMove);
+        testSurfaceDidChangeDirection(Direction.down, Direction.right, backMove);
+        testSurfaceDidChangeDirection(Direction.right, Direction.up, backMove);
+        testSurfaceDidChangeDirection(Direction.up, Direction.left, backMove);
+        testSurfaceDidChangeDirection(Direction.left, Direction.down, backMove);
     }
 
     @Test
     void backInverted() {
         Move backInvertedMove = Move.backInverted;
-        noMoveTest(Direction.back, backInvertedMove);
-        noMoveTest(Direction.front, backInvertedMove);
-        moveTest(Direction.down, Direction.left, backInvertedMove);
-        moveTest(Direction.left, Direction.up, backInvertedMove);
-        moveTest(Direction.up, Direction.right, backInvertedMove);
-        moveTest(Direction.right, Direction.down, backInvertedMove);
+        testSurfaceDidNotChangeDirection(Direction.back, backInvertedMove);
+        testSurfaceDidNotChangeDirection(Direction.front, backInvertedMove);
+        testSurfaceDidChangeDirection(Direction.down, Direction.left, backInvertedMove);
+        testSurfaceDidChangeDirection(Direction.left, Direction.up, backInvertedMove);
+        testSurfaceDidChangeDirection(Direction.up, Direction.right, backInvertedMove);
+        testSurfaceDidChangeDirection(Direction.right, Direction.down, backInvertedMove);
     }
 
 
     @Test
     void up() {
         Move upMove = Move.up;
-        noMoveTest(Direction.up, upMove);
-        noMoveTest(Direction.down, upMove);
-        moveTest(Direction.left, Direction.back, upMove);
-        moveTest(Direction.back, Direction.right, upMove);
-        moveTest(Direction.right, Direction.front, upMove);
-        moveTest(Direction.front, Direction.left, upMove);
+        testSurfaceDidNotChangeDirection(Direction.up, upMove);
+        testSurfaceDidNotChangeDirection(Direction.down, upMove);
+        testSurfaceDidChangeDirection(Direction.left, Direction.back, upMove);
+        testSurfaceDidChangeDirection(Direction.back, Direction.right, upMove);
+        testSurfaceDidChangeDirection(Direction.right, Direction.front, upMove);
+        testSurfaceDidChangeDirection(Direction.front, Direction.left, upMove);
     }
 
     @Test
     void upInverted() {
         Move upInvertedMove = Move.upInverted;
-        noMoveTest(Direction.up, upInvertedMove);
-        noMoveTest(Direction.down, upInvertedMove);
-        moveTest(Direction.left, Direction.front, upInvertedMove);
-        moveTest(Direction.front, Direction.right, upInvertedMove);
-        moveTest(Direction.right, Direction.back, upInvertedMove);
-        moveTest(Direction.back, Direction.left, upInvertedMove);
+        testSurfaceDidNotChangeDirection(Direction.up, upInvertedMove);
+        testSurfaceDidNotChangeDirection(Direction.down, upInvertedMove);
+        testSurfaceDidChangeDirection(Direction.left, Direction.front, upInvertedMove);
+        testSurfaceDidChangeDirection(Direction.front, Direction.right, upInvertedMove);
+        testSurfaceDidChangeDirection(Direction.right, Direction.back, upInvertedMove);
+        testSurfaceDidChangeDirection(Direction.back, Direction.left, upInvertedMove);
     }
 
     @Test
     void down() {
         Move downMove = Move.down;
-        noMoveTest(Direction.down, downMove);
-        noMoveTest(Direction.up, downMove);
-        moveTest(Direction.left, Direction.front, downMove);
-        moveTest(Direction.front, Direction.right, downMove);
-        moveTest(Direction.right, Direction.back, downMove);
-        moveTest(Direction.back, Direction.left, downMove);
+        testSurfaceDidNotChangeDirection(Direction.down, downMove);
+        testSurfaceDidNotChangeDirection(Direction.up, downMove);
+        testSurfaceDidChangeDirection(Direction.left, Direction.front, downMove);
+        testSurfaceDidChangeDirection(Direction.front, Direction.right, downMove);
+        testSurfaceDidChangeDirection(Direction.right, Direction.back, downMove);
+        testSurfaceDidChangeDirection(Direction.back, Direction.left, downMove);
     }
 
     @Test
     void downInverted() {
         Move downInvertedMove = Move.downInverted;
-        noMoveTest(Direction.up, downInvertedMove);
-        noMoveTest(Direction.down, downInvertedMove);
-        moveTest(Direction.left, Direction.back, downInvertedMove);
-        moveTest(Direction.back, Direction.right, downInvertedMove);
-        moveTest(Direction.right, Direction.front, downInvertedMove);
-        moveTest(Direction.front, Direction.left, downInvertedMove);
+        testSurfaceDidNotChangeDirection(Direction.up, downInvertedMove);
+        testSurfaceDidNotChangeDirection(Direction.down, downInvertedMove);
+        testSurfaceDidChangeDirection(Direction.left, Direction.back, downInvertedMove);
+        testSurfaceDidChangeDirection(Direction.back, Direction.right, downInvertedMove);
+        testSurfaceDidChangeDirection(Direction.right, Direction.front, downInvertedMove);
+        testSurfaceDidChangeDirection(Direction.front, Direction.left, downInvertedMove);
     }
 
     @Test

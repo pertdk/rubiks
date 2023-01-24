@@ -8,7 +8,10 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.HashMap;
 
-public class TestSurface {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+public class SurfaceTest {
 
     private HashMap<Direction, Surface> directionSurfaceHashMap;
     private HashMap<Color, Surface> colorSurfaceHashMap;
@@ -40,28 +43,32 @@ public class TestSurface {
     @BeforeEach
     void beforeAll() {
         ArrayList<Direction> directions = generateListOfAllDirections();
+        assertNotNull(directions);
         ArrayList<Color> colors = generateListOfAllColors();
+        assertNotNull(colors);
         generateSurfaceHashMaps(directions, colors);
+        assertNotNull(directionSurfaceHashMap);
+        assertNotNull(colorSurfaceHashMap);
     }
 
 
     private void testSurfaceDidNotChangeDirection(Direction direction, Move move) {
         Surface testSurface = directionSurfaceHashMap.get(direction);
         Direction beforeTestDirection = testSurface.getDirection();
-        Assertions.assertEquals(beforeTestDirection, direction);
+        assertEquals(beforeTestDirection, direction);
         testSurface.move(move);
         Direction afterTestDirection = testSurface.getDirection();
-        Assertions.assertEquals(afterTestDirection, direction);
+        assertEquals(afterTestDirection, direction);
     }
 
     private void testSurfaceDidChangeDirection(Direction beforeDirection, Direction afterDirection, Move move) {
         Surface testSurface = directionSurfaceHashMap.get(beforeDirection);
         Direction beforeTestDirection = testSurface.getDirection();
-        Assertions.assertEquals(beforeTestDirection, beforeDirection);
+        assertEquals(beforeTestDirection, beforeDirection);
         Assertions.assertNotEquals(beforeDirection, afterDirection);
         testSurface.move(move);
         Direction afterTestDirection = testSurface.getDirection();
-        Assertions.assertEquals(afterTestDirection, afterDirection);
+        assertEquals(afterTestDirection, afterDirection);
         Assertions.assertNotEquals(afterTestDirection, beforeDirection);
     }
 
@@ -198,14 +205,15 @@ public class TestSurface {
         testSurfaceDidChangeDirection(Direction.front, Direction.left, downInvertedMove);
     }
 
+
     @Test
     void colors() {
         Surface testSurface = colorSurfaceHashMap.get(Color.left);
         Color beforeTestColor = testSurface.getColor();
-        Assertions.assertEquals(beforeTestColor, Color.left);
+        assertEquals(beforeTestColor, Color.left);
         testSurface.setColor(Color.right);
         Color afterTestColor = testSurface.getColor();
-        Assertions.assertEquals(afterTestColor, Color.right);
+        assertEquals(afterTestColor, Color.right);
     }
 
 }

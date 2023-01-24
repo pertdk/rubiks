@@ -1,4 +1,6 @@
-package dk.pert.rubiks.rubiksmodel;
+package dk.pert.rubiks.rubiksmodel.utils;
+
+import dk.pert.rubiks.rubiksmodel.AbstractPiece;
 
 public class DummyAbstractPiece extends AbstractPiece {
 

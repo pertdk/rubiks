@@ -1,17 +1,19 @@
 package dk.pert.rubiks.rubiksmodel;
 
 import org.apache.log4j.Logger;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class TestCenterPiece {
 
-    private static final Logger LOGGER = Logger.getLogger(TestCenterPiece.class);
+class CenterPieceTest {
+
+    private static final Logger LOGGER = Logger.getLogger(CenterPieceTest.class);
 
     ArrayList<Direction> directions;
     ArrayList<Color> colors;
@@ -43,20 +45,19 @@ class TestCenterPiece {
 
             CenterPiece centerPiece = new CenterPiece(currentDirection, currentColor);
             Color colorRetrieved = centerPiece.getSurface(currentDirection);
-            Assertions.assertEquals(colorRetrieved, currentColor);
+            assertEquals(colorRetrieved, currentColor);
 
             centerPiece.move(move);
             Color movedColor = centerPiece.getSurface(currentDirection);
-            Assertions.assertEquals(movedColor, currentColor);
+            assertEquals(movedColor, currentColor);
 
             int otherDirectionNo = 0;
             int otherColorNo = 0;
             while (otherDirectionNo < otherDirections.size() && otherColorNo < otherColors.size()) {
                 Direction otherDirection = otherDirections.get(otherDirectionNo);
-                IllegalArgumentException thrown;
-                thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> centerPiece.getSurface(otherDirection));
+                IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> centerPiece.getSurface(otherDirection));
                 logMessage.append(String.format("\t-- otherDirection: %s\n", otherDirection));
-                Assertions.assertEquals(AbstractPiece.NO_SUCH_DIRECTION, thrown.getMessage());
+                assertEquals(AbstractPiece.NO_SUCH_DIRECTION, thrown.getMessage());
                 otherDirectionNo++;
                 otherColorNo++;
             }
@@ -150,11 +151,11 @@ class TestCenterPiece {
 
             CenterPiece centerPiece = new CenterPiece(currentDirection, currentColor);
             Color colorRetrieved = centerPiece.getSurface(currentDirection);
-            Assertions.assertEquals(colorRetrieved, currentColor);
+            assertEquals(colorRetrieved, currentColor);
 
             IllegalArgumentException thrownCurrent;
-            thrownCurrent = Assertions.assertThrows(IllegalArgumentException.class, () -> centerPiece.setSurface(currentDirection, currentColor));
-            Assertions.assertEquals(AbstractPiece.ALL_SURFACES_ALREADY_SET, thrownCurrent.getMessage());
+            thrownCurrent = assertThrows(IllegalArgumentException.class, () -> centerPiece.setSurface(currentDirection, currentColor));
+            assertEquals(AbstractPiece.ALL_SURFACES_ALREADY_SET, thrownCurrent.getMessage());
 
             int otherDirectionNo = 0;
             int otherColorNo = 0;
@@ -162,9 +163,9 @@ class TestCenterPiece {
                 Direction otherDirection = otherDirections.get(otherDirectionNo);
                 Color otherColor = otherColors.get(otherColorNo);
                 IllegalArgumentException thrownOther;
-                thrownOther = Assertions.assertThrows(IllegalArgumentException.class, () -> centerPiece.setSurface(otherDirection, otherColor));
+                thrownOther = assertThrows(IllegalArgumentException.class, () -> centerPiece.setSurface(otherDirection, otherColor));
                 logMessage.append(String.format("\t-- otherDirection: %s\n", otherDirection));
-                Assertions.assertEquals(AbstractPiece.ALL_SURFACES_ALREADY_SET, thrownOther.getMessage());
+                assertEquals(AbstractPiece.ALL_SURFACES_ALREADY_SET, thrownOther.getMessage());
                 otherDirectionNo++;
                 otherColorNo++;
             }

@@ -5,3 +5,4 @@ RubiksController/target/*
 RubiksModel/target/*
 /stdout.txt
 /stderr.txt
+/.idea/

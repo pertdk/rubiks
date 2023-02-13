@@ -67,4 +67,34 @@ public class DummyAbstractPiece extends AbstractPiece {
     protected void moveBackInverted() {
 
     }
+
+    @Override
+    public void turnClockwiseAroundXAxis() {
+
+    }
+
+    @Override
+    public void turnCounterclockwiseAroundXAxis() {
+
+    }
+
+    @Override
+    public void turnClockwiseAroundYAxis() {
+
+    }
+
+    @Override
+    public void turnCounterclockwiseAroundYAxis() {
+
+    }
+
+    @Override
+    public void turnClockwiseAroundZAxis() {
+
+    }
+
+    @Override
+    public void turnCounterclockwiseAroundZAxis() {
+
+    }
 }

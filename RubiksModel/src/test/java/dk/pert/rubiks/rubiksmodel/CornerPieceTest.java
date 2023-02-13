@@ -112,126 +112,34 @@ class CornerPieceTest {
         afterDirections = new ArrayList<>(Arrays.asList(Direction.back, Direction.right, Direction.up));
 
         testTurn(Turn.clockWise, Axis.xAxis);
-
-
-        IllegalArgumentException downExceptionBefore = assertThrows(IllegalArgumentException.class, () -> topRightFront.getSurface(Direction.down));
-        assertEquals(AbstractPiece.NO_SUCH_DIRECTION, downExceptionBefore.getMessage());
-        IllegalArgumentException leftExceptionBefore = assertThrows(IllegalArgumentException.class, () -> topRightFront.getSurface(Direction.left));
-        assertEquals(AbstractPiece.NO_SUCH_DIRECTION, leftExceptionBefore.getMessage());
-        IllegalArgumentException backExceptionBefore = assertThrows(IllegalArgumentException.class, () -> topRightFront.getSurface(Direction.back));
-        assertEquals(AbstractPiece.NO_SUCH_DIRECTION, backExceptionBefore.getMessage());
-
-        /*
-            topRightFront --> frontRightDown
-         */
-        topRightFront.turnClockwiseAroundXAxis();
-
-        Color frontColorBetween = topRightFront.getSurface(Direction.front);
-        assertEquals(Color.top, frontColorBetween);
-        Color rightColorBetween = topRightFront.getSurface(Direction.right);
-        assertEquals(Color.right, rightColorBetween);
-        Color bottomColorBetween = topRightFront.getSurface(Direction.down);
-        assertEquals(Color.front, bottomColorBetween);
-
-        IllegalArgumentException backExceptionBetween = assertThrows(IllegalArgumentException.class, () -> topRightFront.getSurface(Direction.back));
-        assertEquals(AbstractPiece.NO_SUCH_DIRECTION, backExceptionBetween.getMessage());
-        IllegalArgumentException leftExceptionBetween = assertThrows(IllegalArgumentException.class, () -> topRightFront.getSurface(Direction.left));
-        assertEquals(AbstractPiece.NO_SUCH_DIRECTION, leftExceptionBetween.getMessage());
-        IllegalArgumentException upExceptionBetween = assertThrows(IllegalArgumentException.class, () -> topRightFront.getSurface(Direction.up));
-        assertEquals(AbstractPiece.NO_SUCH_DIRECTION, upExceptionBetween.getMessage());
-
-        /*
-            frontRightDown --> topRightFront
-         */
-        topRightFront.turnCounterclockwiseAroundXAxis();
-
-        Color topColorAfter = topRightFront.getSurface(Direction.up);
-        assertEquals(Color.top, topColorAfter);
-        Color rightColorAfter = topRightFront.getSurface(Direction.right);
-        assertEquals(Color.right, rightColorAfter);
-        Color frontColorAfter = topRightFront.getSurface(Direction.front);
-        assertEquals(Color.front, frontColorAfter);
-
-        IllegalArgumentException downExceptionAfter = assertThrows(IllegalArgumentException.class, () -> topRightFront.getSurface(Direction.down));
-        assertEquals(AbstractPiece.NO_SUCH_DIRECTION, downExceptionAfter.getMessage());
-        IllegalArgumentException leftExceptionAfter = assertThrows(IllegalArgumentException.class, () -> topRightFront.getSurface(Direction.left));
-        assertEquals(AbstractPiece.NO_SUCH_DIRECTION, leftExceptionAfter.getMessage());
-        IllegalArgumentException backExceptionAfter = assertThrows(IllegalArgumentException.class, () -> topRightFront.getSurface(Direction.back));
-        assertEquals(AbstractPiece.NO_SUCH_DIRECTION, backExceptionAfter.getMessage());
-
+        swapDirections();
+        testTurn(Turn.counterClockWise, Axis.xAxis);
     }
 
     @Test
     void testTurnBottomRightFrontAroundXAxis() {
-        Color bottomColorBefore = bottomRightFront.getSurface(Direction.down);
-        assertEquals(Color.bottom, bottomColorBefore);
-        Color rightColorBefore = bottomRightFront.getSurface(Direction.right);
-        assertEquals(Color.right, rightColorBefore);
-        Color frontColorBefore = bottomRightFront.getSurface(Direction.front);
-        assertEquals(Color.front, frontColorBefore);
+        testPiece = bottomRightFront;
+        testColors = new ArrayList<>(Arrays.asList(Color.bottom, Color.right, Color.front));
 
-        IllegalArgumentException upExceptionBefore = assertThrows(IllegalArgumentException.class, () -> bottomRightFront.getSurface(Direction.up));
-        assertEquals(AbstractPiece.NO_SUCH_DIRECTION, upExceptionBefore.getMessage());
-        IllegalArgumentException leftExceptionBefore = assertThrows(IllegalArgumentException.class, () -> bottomRightFront.getSurface(Direction.left));
-        assertEquals(AbstractPiece.NO_SUCH_DIRECTION, leftExceptionBefore.getMessage());
-        IllegalArgumentException backExceptionBefore = assertThrows(IllegalArgumentException.class, () -> bottomRightFront.getSurface(Direction.back));
-        assertEquals(AbstractPiece.NO_SUCH_DIRECTION, backExceptionBefore.getMessage());
+        beforeDirections = new ArrayList<>(Arrays.asList(Direction.down, Direction.right, Direction.front));
+        afterDirections = new ArrayList<>(Arrays.asList(Direction.front, Direction.right, Direction.up));
 
-        /*
-            bottomRightFront --> backRightDown
-         */
-        bottomRightFront.turnClockwiseAroundXAxis();
-
-        Color backColorBetween = bottomRightFront.getSurface(Direction.back);
-        assertEquals(Color.bottom, backColorBetween);
-        Color rightColorBetween = bottomRightFront.getSurface(Direction.right);
-        assertEquals(Color.right, rightColorBetween);
-        Color bottomColorBetween = bottomRightFront.getSurface(Direction.down);
-        assertEquals(Color.front, bottomColorBetween);
-
-        IllegalArgumentException frontExceptionBetween = assertThrows(IllegalArgumentException.class, () -> bottomRightFront.getSurface(Direction.front));
-        assertEquals(AbstractPiece.NO_SUCH_DIRECTION, frontExceptionBetween.getMessage());
-        IllegalArgumentException leftExceptionBetween = assertThrows(IllegalArgumentException.class, () -> bottomRightFront.getSurface(Direction.left));
-        assertEquals(AbstractPiece.NO_SUCH_DIRECTION, leftExceptionBetween.getMessage());
-        IllegalArgumentException upExceptionBetween = assertThrows(IllegalArgumentException.class, () -> bottomRightFront.getSurface(Direction.up));
-        assertEquals(AbstractPiece.NO_SUCH_DIRECTION, upExceptionBetween.getMessage());
-
-        /*
-            frontRightDown --> bottomRightFront
-         */
-        bottomRightFront.turnCounterclockwiseAroundXAxis();
-
-        Color bottomColorAfter = bottomRightFront.getSurface(Direction.down);
-        assertEquals(Color.bottom, bottomColorAfter);
-        Color rightColorAfter = bottomRightFront.getSurface(Direction.right);
-        assertEquals(Color.right, rightColorAfter);
-        Color frontColorAfter = bottomRightFront.getSurface(Direction.front);
-        assertEquals(Color.front, frontColorAfter);
-
-        IllegalArgumentException upExceptionAfter = assertThrows(IllegalArgumentException.class, () -> bottomRightFront.getSurface(Direction.up));
-        assertEquals(AbstractPiece.NO_SUCH_DIRECTION, upExceptionAfter.getMessage());
-        IllegalArgumentException leftExceptionAfter = assertThrows(IllegalArgumentException.class, () -> bottomRightFront.getSurface(Direction.left));
-        assertEquals(AbstractPiece.NO_SUCH_DIRECTION, leftExceptionAfter.getMessage());
-        IllegalArgumentException backExceptionAfter = assertThrows(IllegalArgumentException.class, () -> bottomRightFront.getSurface(Direction.back));
-        assertEquals(AbstractPiece.NO_SUCH_DIRECTION, backExceptionAfter.getMessage());
-
-
+        testTurn(Turn.clockWise, Axis.xAxis);
+        swapDirections();
+        testTurn(Turn.counterClockWise, Axis.xAxis);
     }
 
     @Test
-    void turnClockwiseAroundYAxis() {
-    }
+    void testTurnTopLeftBackAroundXAxis() {
+        testPiece = topLeftBack;
+        testColors = new ArrayList<>(Arrays.asList(Color.top, Color.left, Color.back));
 
-    @Test
-    void turnCounterClockwiseAroundYAxis() {
-    }
+        beforeDirections = new ArrayList<>(Arrays.asList(Direction.up, Direction.left, Direction.back));
+        afterDirections = new ArrayList<>(Arrays.asList(Direction.front, Direction.left, Direction.up));
 
-    @Test
-    void turnClockwiseAroundZAxis() {
-    }
-
-    @Test
-    void turnCounterClockwiseAroundZAxis() {
+        testTurn(Turn.clockWise, Axis.xAxis);
+        swapDirections();
+        testTurn(Turn.counterClockWise, Axis.xAxis);
     }
 
     @Test

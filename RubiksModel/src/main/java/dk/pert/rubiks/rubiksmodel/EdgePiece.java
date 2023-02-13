@@ -110,7 +110,7 @@ public class EdgePiece extends AbstractPiece {
         moveColor(Direction.right, Direction.up);
     }
 
-    private void turnClockwiseAroundXAxis() {
+    public void turnClockwiseAroundXAxis() {
         if (surfaces.containsKey(Direction.back)) {
             moveBack2Up();
         } else if (surfaces.containsKey(Direction.up)) {
@@ -122,7 +122,7 @@ public class EdgePiece extends AbstractPiece {
         }
     }
 
-    private void turnCounterclockwiseAroundXAxis() {
+    public void turnCounterclockwiseAroundXAxis() {
         if (surfaces.containsKey(Direction.back)) {
             moveBack2Down();
         } else if (surfaces.containsKey(Direction.down)) {
@@ -134,7 +134,7 @@ public class EdgePiece extends AbstractPiece {
         }
     }
 
-    private void turnClockwiseAroundYAxis() {
+    public void turnClockwiseAroundYAxis() {
         if (surfaces.containsKey(Direction.left)) {
             moveLeft2Back();
         } else if (surfaces.containsKey(Direction.back)) {
@@ -146,7 +146,7 @@ public class EdgePiece extends AbstractPiece {
         }
     }
 
-    private void turnCounterclockwiseAroundYAxis() {
+    public void turnCounterclockwiseAroundYAxis() {
         if (surfaces.containsKey(Direction.left)) {
             moveLeft2Front();
         } else if (surfaces.containsKey(Direction.front)) {
@@ -158,7 +158,7 @@ public class EdgePiece extends AbstractPiece {
         }
     }
 
-    private void turnClockwiseAroundZAxis() {
+    public void turnClockwiseAroundZAxis() {
         if (surfaces.containsKey(Direction.up)) {
             moveUp2Right();
         } else if (surfaces.containsKey(Direction.right)) {
@@ -170,7 +170,7 @@ public class EdgePiece extends AbstractPiece {
         }
     }
 
-    private void turnCounterclockwiseAroundZAxis() {
+    public void turnCounterclockwiseAroundZAxis() {
         if (surfaces.containsKey(Direction.up)) {
             moveUp2Left();
         } else if (surfaces.containsKey(Direction.left)) {

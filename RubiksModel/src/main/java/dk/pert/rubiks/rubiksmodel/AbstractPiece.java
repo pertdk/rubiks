@@ -22,15 +22,15 @@ public abstract class AbstractPiece {
         initSurfaces();
     }
 
+    private int getNoOfSurfaces() {
+        return this.noOfSurfaces;
+    }
+
     private void setNoOfSurfaces(int noOfSurfaces) {
         if (noOfSurfaces < 1 || noOfSurfaces > 3) {
             throw new IllegalArgumentException(String.format(ILLEGAL_NUMBER_OF_SURFACES_FORMAT, noOfSurfaces));
         }
         this.noOfSurfaces = noOfSurfaces;
-    }
-
-    private int getNoOfSurfaces() {
-        return this.noOfSurfaces;
     }
 
     private void initSurfaces() {
@@ -87,6 +87,18 @@ public abstract class AbstractPiece {
 
     protected abstract void moveBackInverted();
 
+    public abstract void turnClockwiseAroundXAxis();
+
+    public abstract void turnCounterclockwiseAroundXAxis();
+
+    public abstract void turnClockwiseAroundYAxis();
+
+    public abstract void turnCounterclockwiseAroundYAxis();
+
+    public abstract void turnClockwiseAroundZAxis();
+
+    public abstract void turnCounterclockwiseAroundZAxis();
+
     public void move(Move move) {
         switch (move) {
             case left -> moveLeft();
@@ -101,6 +113,29 @@ public abstract class AbstractPiece {
             case frontInverted -> moveFrontInverted();
             case back -> moveBack();
             case backInverted -> moveBackInverted();
+        }
+    }
+
+    public void turnClockwiseAround(Axis axis) {
+        switch (axis) {
+            case xAxis -> turnClockwiseAroundXAxis();
+            case yAxis -> turnClockwiseAroundYAxis();
+            case zAxis -> turnClockwiseAroundZAxis();
+        }
+    }
+
+    public void turnCounterClockwiseAround(Axis axis) {
+        switch (axis) {
+            case xAxis -> turnCounterclockwiseAroundXAxis();
+            case yAxis -> turnCounterclockwiseAroundYAxis();
+            case zAxis -> turnCounterclockwiseAroundZAxis();
+        }
+    }
+
+    public void turn(Turn turn, Axis axis) {
+        switch (turn) {
+            case clockWise -> turnClockwiseAround(axis);
+            case counterClockWise -> turnCounterClockwiseAround(axis);
         }
     }
 

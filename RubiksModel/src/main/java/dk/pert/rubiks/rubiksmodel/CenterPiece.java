@@ -72,4 +72,34 @@ public class CenterPiece extends AbstractPiece {
     protected void moveBackInverted() {
         /* CenterPieces will never move */
     }
+
+    @Override
+    public void turnClockwiseAroundXAxis() {
+        /* CenterPieces will never move */
+    }
+
+    @Override
+    public void turnCounterclockwiseAroundXAxis() {
+        /* CenterPieces will never move */
+    }
+
+    @Override
+    public void turnClockwiseAroundYAxis() {
+        /* CenterPieces will never move */
+    }
+
+    @Override
+    public void turnCounterclockwiseAroundYAxis() {
+        /* CenterPieces will never move */
+    }
+
+    @Override
+    public void turnClockwiseAroundZAxis() {
+        /* CenterPieces will never move */
+    }
+
+    @Override
+    public void turnCounterclockwiseAroundZAxis() {
+        /* CenterPieces will never move */
+    }
 }

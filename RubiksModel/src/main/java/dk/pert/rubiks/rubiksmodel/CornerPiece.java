@@ -63,137 +63,190 @@ public class CornerPiece extends AbstractPiece {
         moveColor(Direction.right, Direction.up);
     }
 
+    private void turnClockwiseAroundXAxisLeft() {
+        Direction currentDirection, newDirection;
+        if (surfaces.containsKey(Direction.down)) {
+            currentDirection = Direction.down;
+            newDirection = Direction.back;
+        } else {
+            currentDirection = Direction.up;
+            newDirection = Direction.front;
+        }
+        Color currentColor = surfaces.get(currentDirection);
+        surfaces.remove(currentDirection);
+        if (surfaces.containsKey(Direction.front)) {
+            moveFront2Down();
+        } else {
+            moveBack2Up();
+        }
+        surfaces.put(newDirection, currentColor);
+    }
+
+    private void turnCounterclockwiseAroundXAxisLeft() {
+        Direction currentDirection, newDirection;
+        if (surfaces.containsKey(Direction.down)) {
+            currentDirection = Direction.down;
+            newDirection = Direction.front;
+        } else {
+            currentDirection = Direction.up;
+            newDirection = Direction.back;
+        }
+        Color currentColor = surfaces.get(currentDirection);
+        surfaces.remove(currentDirection);
+        if (surfaces.containsKey(Direction.front)) {
+            moveFront2Up();
+        } else {
+            moveBack2Down();
+        }
+        surfaces.put(newDirection, currentColor);
+    }
+
+    private void turnClockwiseAroundXAxisRight() {
+        turnCounterclockwiseAroundXAxisLeft();
+    }
+
+    private void turnCounterclockwiseAroundXAxisRight() {
+        turnClockwiseAroundXAxisLeft();
+    }
+
+
     public void turnClockwiseAroundXAxis() {
-        if (surfaces.containsKey(Direction.down)) {
-            Color down = surfaces.get(Direction.down);
-            surfaces.remove(Direction.down);
-            if (surfaces.containsKey(Direction.front)) {
-                moveFront2Down();
-            } else if (surfaces.containsKey(Direction.back)) {
-                moveBack2Up();
-            }
-            surfaces.put(Direction.back, down);
-        } else if (surfaces.containsKey(Direction.up)) {
-            Color up = surfaces.get(Direction.up);
-            surfaces.remove(Direction.up);
-            if (surfaces.containsKey(Direction.front)) {
-                moveFront2Down();
-            } else if (surfaces.containsKey(Direction.back)) {
-                moveBack2Up();
-            }
-            surfaces.put(Direction.front, up);
+        if (surfaces.containsKey(Direction.left)) {
+            turnClockwiseAroundXAxisLeft();
+        } else {
+            turnClockwiseAroundXAxisRight();
         }
     }
 
-
-    public void turnCounterClockwiseAroundXAxis() {
-        if (surfaces.containsKey(Direction.down)) {
-            Color down = surfaces.get(Direction.down);
-            surfaces.remove(Direction.down);
-            if (surfaces.containsKey(Direction.front)) {
-                moveFront2Up();
-            } else if (surfaces.containsKey(Direction.back)) {
-                moveBack2Down();
-            }
-            surfaces.put(Direction.front, down);
-        } else if (surfaces.containsKey(Direction.up)) {
-            Color up = surfaces.get(Direction.up);
-            surfaces.remove(Direction.up);
-            if (surfaces.containsKey(Direction.front)) {
-                moveFront2Up();
-            } else if (surfaces.containsKey(Direction.back)) {
-                moveBack2Down();
-            }
-            surfaces.put(Direction.front, up);
+    public void turnCounterclockwiseAroundXAxis() {
+        if (surfaces.containsKey(Direction.left)) {
+            turnCounterclockwiseAroundXAxisLeft();
+        } else {
+            turnCounterclockwiseAroundXAxisRight();
         }
     }
 
+    private void turnClockwiseAroundYAxisUp() {
+        Direction currentDirection, newDirection;
+        if (surfaces.containsKey(Direction.left)) {
+            currentDirection = Direction.left;
+            newDirection = Direction.back;
+        } else {
+            currentDirection = Direction.right;
+            newDirection = Direction.front;
+        }
+        Color currentColor = surfaces.get(currentDirection);
+        surfaces.remove(currentDirection);
+        if (surfaces.containsKey(Direction.front)) {
+            moveFront2Left();
+        } else {
+            moveBack2Right();
+        }
+        surfaces.put(newDirection, currentColor);
+    }
+
+    private void turnCounterclockwiseAroundYAxisUp() {
+        Direction currentDirection, newDirection;
+        if (surfaces.containsKey(Direction.left)) {
+            currentDirection = Direction.left;
+            newDirection = Direction.front;
+        } else {
+            currentDirection = Direction.right;
+            newDirection = Direction.back;
+        }
+        Color currentColor = surfaces.get(currentDirection);
+        surfaces.remove(currentDirection);
+        if (surfaces.containsKey(Direction.front)) {
+            moveFront2Right();
+        } else {
+            moveBack2Left();
+        }
+        surfaces.put(newDirection, currentColor);
+    }
+
+    private void turnClockwiseAroundYAxisDown() {
+        turnCounterclockwiseAroundYAxisUp();
+    }
+
+    private void turnCounterclockwiseAroundYAxisDown() {
+        turnClockwiseAroundYAxisUp();
+    }
 
     public void turnClockwiseAroundYAxis() {
-        if (surfaces.containsKey(Direction.left)) {
-            Color left = surfaces.get(Direction.left);
-            surfaces.remove(Direction.left);
-            if (surfaces.containsKey(Direction.front)) {
-                moveFront2Left();
-            } else if (surfaces.containsKey(Direction.back)) {
-                moveBack2Right();
-            }
-            surfaces.put(Direction.back, left);
-        } else if (surfaces.containsKey(Direction.right)) {
-            Color right = surfaces.get(Direction.right);
-            surfaces.remove(Direction.right);
-            if (surfaces.containsKey(Direction.front)) {
-                moveFront2Left();
-            } else if (surfaces.containsKey(Direction.back)) {
-                moveBack2Right();
-            }
-            surfaces.put(Direction.front, right);
+        if (surfaces.containsKey(Direction.up)) {
+            turnClockwiseAroundYAxisUp();
+        } else {
+            turnClockwiseAroundYAxisDown();
         }
     }
 
-    public void turnCounterClockwiseAroundYAxis() {
-        if (surfaces.containsKey(Direction.left)) {
-            Color left = surfaces.get(Direction.left);
-            surfaces.remove(Direction.left);
-            if (surfaces.containsKey(Direction.front)) {
-                moveFront2Right();
-            } else if (surfaces.containsKey(Direction.back)) {
-                moveBack2Left();
-            }
-            surfaces.put(Direction.front, left);
-        } else if (surfaces.containsKey(Direction.right)) {
-            Color right = surfaces.get(Direction.right);
-            surfaces.remove(Direction.right);
-            if (surfaces.containsKey(Direction.front)) {
-                moveFront2Right();
-            } else if (surfaces.containsKey(Direction.back)) {
-                moveBack2Left();
-            }
-            surfaces.put(Direction.back, right);
+    public void turnCounterclockwiseAroundYAxis() {
+        if (surfaces.containsKey(Direction.up)) {
+            turnCounterclockwiseAroundYAxisUp();
+        } else {
+            turnCounterclockwiseAroundYAxisDown();
         }
+    }
+
+    private void turnClockwiseAroundZAxisFront() {
+        Direction currentDirection, newDirection;
+        if (surfaces.containsKey(Direction.up)) {
+            currentDirection = Direction.up;
+            newDirection = Direction.right;
+        } else {
+            currentDirection = Direction.down;
+            newDirection = Direction.left;
+        }
+        Color currentColor = surfaces.get(currentDirection);
+        surfaces.remove(currentDirection);
+        if (surfaces.containsKey(Direction.left)) {
+            moveLeft2Up();
+        } else {
+            moveRight2Down();
+        }
+        surfaces.put(newDirection, currentColor);
+    }
+
+    private void turnCounterclockwiseAroundZAxisFront() {
+        Direction currentDirection, newDirection;
+        if (surfaces.containsKey(Direction.up)) {
+            currentDirection = Direction.up;
+            newDirection = Direction.left;
+        } else {
+            currentDirection = Direction.down;
+            newDirection = Direction.right;
+        }
+        Color currentColor = surfaces.get(currentDirection);
+        surfaces.remove(currentDirection);
+        if (surfaces.containsKey(Direction.left)) {
+            moveLeft2Down();
+        } else {
+            moveRight2Up();
+        }
+        surfaces.put(newDirection, currentColor);
+    }
+
+    private void turnClockwiseAroundZAxisBack() {
+        turnCounterclockwiseAroundZAxisFront();
+    }
+
+    private void turnCounterclockwiseAroundZAxisBack() {
+        turnClockwiseAroundZAxisFront();
     }
 
     public void turnClockwiseAroundZAxis() {
-        if (surfaces.containsKey(Direction.up)) {
-            Color up = surfaces.get(Direction.up);
-            surfaces.remove(Direction.up);
-            if (surfaces.containsKey(Direction.left)) {
-                moveLeft2Up();
-            } else if (surfaces.containsKey(Direction.right)) {
-                moveRight2Down();
-            }
-            surfaces.put(Direction.right, up);
-        } else if (surfaces.containsKey(Direction.down)) {
-            Color down = surfaces.get(Direction.down);
-            surfaces.remove(Direction.down);
-            if (surfaces.containsKey(Direction.left)) {
-                moveLeft2Up();
-            } else if (surfaces.containsKey(Direction.right)) {
-                moveRight2Down();
-            }
-            surfaces.put(Direction.left, down);
+        if (surfaces.containsKey(Direction.front)) {
+            turnClockwiseAroundZAxisFront();
+        } else {
+            turnClockwiseAroundZAxisBack();
         }
     }
 
-    public void turnCounterClockwiseAroundZAxis() {
-        if (surfaces.containsKey(Direction.up)) {
-            Color up = surfaces.get(Direction.up);
-            surfaces.remove(Direction.up);
-            if (surfaces.containsKey(Direction.left)) {
-                moveLeft2Down();
-            } else if (surfaces.containsKey(Direction.right)) {
-                moveRight2Up();
-            }
-            surfaces.put(Direction.left, up);
-        } else if (surfaces.containsKey(Direction.down)) {
-            Color down = surfaces.get(Direction.down);
-            surfaces.remove(Direction.down);
-            if (surfaces.containsKey(Direction.left)) {
-                moveLeft2Down();
-            } else if (surfaces.containsKey(Direction.right)) {
-                moveRight2Up();
-            }
-            surfaces.put(Direction.right, down);
+    public void turnCounterclockwiseAroundZAxis() {
+        if (surfaces.containsKey(Direction.front)) {
+            turnCounterclockwiseAroundZAxisFront();
+        } else {
+            turnCounterclockwiseAroundZAxisBack();
         }
     }
 
@@ -207,7 +260,7 @@ public class CornerPiece extends AbstractPiece {
     @Override
     protected void moveLeftInverted() {
         if (surfaces.containsKey(Direction.left)) {
-            turnCounterClockwiseAroundXAxis();
+            turnCounterclockwiseAroundXAxis();
         }
     }
 
@@ -215,7 +268,7 @@ public class CornerPiece extends AbstractPiece {
     @Override
     protected void moveRight() {
         if (surfaces.containsKey(Direction.right)) {
-            turnCounterClockwiseAroundXAxis();
+            turnCounterclockwiseAroundXAxis();
         }
     }
 
@@ -236,14 +289,14 @@ public class CornerPiece extends AbstractPiece {
     @Override
     protected void moveUpInverted() {
         if (surfaces.containsKey(Direction.up)) {
-            turnCounterClockwiseAroundYAxis();
+            turnCounterclockwiseAroundYAxis();
         }
     }
 
     @Override
     protected void moveDown() {
         if (surfaces.containsKey(Direction.down)) {
-            turnCounterClockwiseAroundYAxis();
+            turnCounterclockwiseAroundYAxis();
         }
     }
 
@@ -264,14 +317,14 @@ public class CornerPiece extends AbstractPiece {
     @Override
     protected void moveFrontInverted() {
         if (surfaces.containsKey(Direction.front)) {
-            turnCounterClockwiseAroundZAxis();
+            turnCounterclockwiseAroundZAxis();
         }
     }
 
     @Override
     protected void moveBack() {
         if (surfaces.containsKey(Direction.back)) {
-            turnCounterClockwiseAroundZAxis();
+            turnCounterclockwiseAroundZAxis();
         }
     }
 

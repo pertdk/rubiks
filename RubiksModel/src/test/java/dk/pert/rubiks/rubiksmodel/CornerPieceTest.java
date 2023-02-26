@@ -25,122 +25,121 @@ class CornerPieceTest {
     ArrayList<Color> colors;
 
 
-    private CornerPiece testPiece;
-    private ArrayList<Color> testColors = new ArrayList<>(3);
-    private ArrayList<Direction> beforeDirections = new ArrayList<>(3);
-    private ArrayList<Color> afterColors = new ArrayList<>(3);
-    private ArrayList<Direction> afterDirections = new ArrayList<>(3);
-
     @BeforeEach
     void beforeEach() {
         directions = new ArrayList<>(EnumSet.allOf(Direction.class));
         colors = new ArrayList<>(EnumSet.allOf(Color.class));
     }
 
-    private void testColor(Color color, Direction direction) {
-        Color beforeColor = testPiece.getSurface(direction);
+    private void _givenCornerPiece_whenDirection_thenColor(CornerPiece cornerPiece, Color color, Direction direction) {
+        Color beforeColor = cornerPiece.getSurface(direction);
         assertEquals(beforeColor, color);
     }
 
-    private void testColors(ArrayList<Color> colors, ArrayList<Direction> directions) {
-        testColor(colors.get(0), directions.get(0));
-        testColor(colors.get(1), directions.get(1));
-        testColor(colors.get(2), directions.get(2));
+    private void _givenCornerPiece_whenDirections_thenColors(CornerPiece cornerPiece, ArrayList<Color> colors, ArrayList<Direction> directions) {
+        _givenCornerPiece_whenDirection_thenColor(cornerPiece, colors.get(0), directions.get(0));
+        _givenCornerPiece_whenDirection_thenColor(cornerPiece, colors.get(1), directions.get(1));
+        _givenCornerPiece_whenDirection_thenColor(cornerPiece, colors.get(2), directions.get(2));
     }
 
-    private void testNoColor(Direction direction) {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> testPiece.getSurface(direction));
+    private void _givenCornerPiece_whenDirection_thenThrowIllegalArgumentException(CornerPiece cornerPiece, Direction direction) {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> cornerPiece.getSurface(direction));
         assertEquals(AbstractPiece.NO_SUCH_DIRECTION, exception.getMessage());
     }
 
-    private void testNoColors(ArrayList<Direction> noColorDirections) {
-        ArrayList<Direction> noDirections = (ArrayList<Direction>) directions.clone();
-        noDirections.removeAll(noColorDirections);
-        for (Direction noDirection : noDirections) {
-            testNoColor(noDirection);
+    private void _givenCornerPiece_whenDirections_thenThrowIllegalArgumentExceptions(CornerPiece cornerPiece, ArrayList<Direction> directions) {
+        for (Direction direction : directions) {
+            _givenCornerPiece_whenDirection_thenThrowIllegalArgumentException(cornerPiece, direction);
         }
     }
 
-    private void testTurn(Turn turn, Axis axis) {
-        testColors(testColors, beforeDirections);
-        testNoColors(beforeDirections);
-
-        testPiece.turn(turn, axis);
-
-        testColors(testColors, afterDirections);
-        testNoColors(afterDirections);
+    private void _givenCornerPiece_whenSetDirections_thenOtherDirectionsThrowsIllegalArgumentException(CornerPiece cornerPiece, ArrayList<Direction> coloredDirections) {
+        ArrayList<Direction> unsetDirections = (ArrayList<Direction>) directions.clone();
+        unsetDirections.removeAll(coloredDirections);
+        _givenCornerPiece_whenDirections_thenThrowIllegalArgumentExceptions(cornerPiece, unsetDirections);
     }
 
-    private void swapDirections() {
-        ArrayList<Direction> directionsBuffer = beforeDirections;
-        beforeDirections = afterDirections;
-        afterDirections = directionsBuffer;
+    private void _givenCornerPiece_whenTurnTurnedAroundAxis_thenColorsBeforeDirectionsAfterDirections(CornerPiece cornerPiece, Turn turn, Axis axis, ArrayList<Color> colors, ArrayList<Direction> before, ArrayList<Direction> after) {
+        _givenCornerPiece_whenDirections_thenColors(cornerPiece, colors, before);
+        _givenCornerPiece_whenSetDirections_thenOtherDirectionsThrowsIllegalArgumentException(cornerPiece, before);
+
+        cornerPiece.turn(turn, axis);
+
+        _givenCornerPiece_whenDirections_thenColors(cornerPiece, colors, after);
+        _givenCornerPiece_whenSetDirections_thenOtherDirectionsThrowsIllegalArgumentException(cornerPiece, after);
     }
 
-    @Test
-    void testTurnTopLeftFrontAroundXAxis() {
-        testPiece = topLeftFront;
-        testColors = new ArrayList<>(Arrays.asList(Color.top, Color.left, Color.front));
 
-        beforeDirections = new ArrayList<>(Arrays.asList(Direction.up, Direction.left, Direction.front));
-        afterDirections = new ArrayList<>(Arrays.asList(Direction.front, Direction.left, Direction.down));
-
-        testTurn(Turn.clockWise, Axis.xAxis);
-        swapDirections();
-        testTurn(Turn.counterClockWise, Axis.xAxis);
+    private void _givenCornerPiece_whenTurnedAroundXAxis_then_ColorsBeforeDirections_AfterDirections(CornerPiece cornerPiece, ArrayList<Color> colors, ArrayList<Direction> before, ArrayList<Direction> after) {
+        _givenCornerPiece_whenTurnTurnedAroundAxis_thenColorsBeforeDirectionsAfterDirections(cornerPiece, Turn.clockWise, Axis.xAxis, colors, before, after);
+        _givenCornerPiece_whenTurnTurnedAroundAxis_thenColorsBeforeDirectionsAfterDirections(cornerPiece, Turn.counterClockWise, Axis.xAxis, colors, after, before);
     }
 
-    @Test
-    void testTurnBottomLeftFrontAroundXAxis() {
-        testPiece = bottomLeftFront;
-        testColors = new ArrayList<>(Arrays.asList(Color.bottom, Color.left, Color.front));
+    private void _givenCornerPiece_whenTurnedAroundYAxis_then_ColorsBeforeDirections_AfterDirections(CornerPiece cornerPiece, ArrayList<Color> colors, ArrayList<Direction> before, ArrayList<Direction> after) {
+        _givenCornerPiece_whenTurnTurnedAroundAxis_thenColorsBeforeDirectionsAfterDirections(cornerPiece, Turn.clockWise, Axis.yAxis, colors, before, after);
+        _givenCornerPiece_whenTurnTurnedAroundAxis_thenColorsBeforeDirectionsAfterDirections(cornerPiece, Turn.counterClockWise, Axis.yAxis, colors, after, before);
+    }
 
-        beforeDirections = new ArrayList<>(Arrays.asList(Direction.down, Direction.left, Direction.front));
-        afterDirections = new ArrayList<>(Arrays.asList(Direction.back, Direction.left, Direction.down));
+    private void _givenCornerPiece_whenTurnedAroundZAxis_then_ColorsBeforeDirections_AfterDirections(CornerPiece cornerPiece, ArrayList<Color> colors, ArrayList<Direction> before, ArrayList<Direction> after) {
+        _givenCornerPiece_whenTurnTurnedAroundAxis_thenColorsBeforeDirectionsAfterDirections(cornerPiece, Turn.clockWise, Axis.zAxis, colors, before, after);
+        _givenCornerPiece_whenTurnTurnedAroundAxis_thenColorsBeforeDirectionsAfterDirections(cornerPiece, Turn.counterClockWise, Axis.zAxis, colors, after, before);
+    }
 
-        testTurn(Turn.clockWise, Axis.xAxis);
-        swapDirections();
-        testTurn(Turn.counterClockWise, Axis.xAxis);
+    private void _givenCornerPiece_whenTurnedAroundAllAxis_thenColorsXDirectionsYDirectionsZDirections(CornerPiece cornerPiece, ArrayList<Color> colors, ArrayList<Direction> before, ArrayList<Direction> xDirections, ArrayList<Direction> yDirections, ArrayList<Direction> zDirections) {
+        _givenCornerPiece_whenTurnedAroundXAxis_then_ColorsBeforeDirections_AfterDirections(cornerPiece, colors, before, xDirections);
+        _givenCornerPiece_whenTurnedAroundYAxis_then_ColorsBeforeDirections_AfterDirections(cornerPiece, colors, before, yDirections);
+        _givenCornerPiece_whenTurnedAroundZAxis_then_ColorsBeforeDirections_AfterDirections(cornerPiece, colors, before, zDirections);
     }
 
     @Test
-    void testTurnTopRightFrontAroundXAxis() {
-        testPiece = topRightFront;
-        testColors = new ArrayList<>(Arrays.asList(Color.top, Color.right, Color.front));
+    void testTurnTopLeftFront() {
+        ArrayList<Color> topLeftFrontColors = new ArrayList<>(Arrays.asList(Color.top, Color.left, Color.front));
+        ArrayList<Direction> topLeftFrontDirections = new ArrayList<>(Arrays.asList(Direction.up, Direction.left, Direction.front));
 
-        beforeDirections = new ArrayList<>(Arrays.asList(Direction.up, Direction.right, Direction.front));
-        afterDirections = new ArrayList<>(Arrays.asList(Direction.back, Direction.right, Direction.up));
+        ArrayList<Direction> topLeftFrontXDirections = new ArrayList<>(Arrays.asList(Direction.front, Direction.left, Direction.down));
+        ArrayList<Direction> topLeftFrontYDirections = new ArrayList<>(Arrays.asList(Direction.up, Direction.back, Direction.left));
+        ArrayList<Direction> topLeftFrontZDirections = new ArrayList<>(Arrays.asList(Direction.right, Direction.up, Direction.front));
 
-        testTurn(Turn.clockWise, Axis.xAxis);
-        swapDirections();
-        testTurn(Turn.counterClockWise, Axis.xAxis);
+        _givenCornerPiece_whenTurnedAroundAllAxis_thenColorsXDirectionsYDirectionsZDirections(topLeftFront, topLeftFrontColors, topLeftFrontDirections, topLeftFrontXDirections, topLeftFrontYDirections, topLeftFrontZDirections);
     }
 
     @Test
-    void testTurnBottomRightFrontAroundXAxis() {
-        testPiece = bottomRightFront;
-        testColors = new ArrayList<>(Arrays.asList(Color.bottom, Color.right, Color.front));
+    void testTurnTopRightFront() {
+        ArrayList<Color> topRightFrontColors = new ArrayList<>(Arrays.asList(Color.top, Color.right, Color.front));
+        ArrayList<Direction> topRightFrontDirections = new ArrayList<>(Arrays.asList(Direction.up, Direction.right, Direction.front));
 
-        beforeDirections = new ArrayList<>(Arrays.asList(Direction.down, Direction.right, Direction.front));
-        afterDirections = new ArrayList<>(Arrays.asList(Direction.front, Direction.right, Direction.up));
+        ArrayList<Direction> topRightFrontXDirections = new ArrayList<>(Arrays.asList(Direction.back, Direction.right, Direction.up));
+        ArrayList<Direction> topRightFrontYDirections = new ArrayList<>(Arrays.asList(Direction.up, Direction.front, Direction.left));
+        ArrayList<Direction> topRightFrontZDirections = new ArrayList<>(Arrays.asList(Direction.right, Direction.down, Direction.front));
 
-        testTurn(Turn.clockWise, Axis.xAxis);
-        swapDirections();
-        testTurn(Turn.counterClockWise, Axis.xAxis);
+        _givenCornerPiece_whenTurnedAroundAllAxis_thenColorsXDirectionsYDirectionsZDirections(topRightFront, topRightFrontColors, topRightFrontDirections, topRightFrontXDirections, topRightFrontYDirections, topRightFrontZDirections);
     }
 
     @Test
-    void testTurnTopLeftBackAroundXAxis() {
-        testPiece = topLeftBack;
-        testColors = new ArrayList<>(Arrays.asList(Color.top, Color.left, Color.back));
+    void testTurnBottomRightFront() {
+        ArrayList<Color> bottomRightFrontColors = new ArrayList<>(Arrays.asList(Color.bottom, Color.right, Color.front));
+        ArrayList<Direction> bottomRightFrontDirections = new ArrayList<>(Arrays.asList(Direction.down, Direction.right, Direction.front));
 
-        beforeDirections = new ArrayList<>(Arrays.asList(Direction.up, Direction.left, Direction.back));
-        afterDirections = new ArrayList<>(Arrays.asList(Direction.front, Direction.left, Direction.up));
+        ArrayList<Direction> bottomRightFrontXDirections = new ArrayList<>(Arrays.asList(Direction.front, Direction.right, Direction.up));
+        ArrayList<Direction> bottomRightFrontYDirections = new ArrayList<>(Arrays.asList(Direction.down, Direction.back, Direction.right));
+        ArrayList<Direction> bottomRightFrontZDirections = new ArrayList<>(Arrays.asList(Direction.left, Direction.down, Direction.front));
 
-        testTurn(Turn.clockWise, Axis.xAxis);
-        swapDirections();
-        testTurn(Turn.counterClockWise, Axis.xAxis);
+        _givenCornerPiece_whenTurnedAroundAllAxis_thenColorsXDirectionsYDirectionsZDirections(bottomRightFront, bottomRightFrontColors, bottomRightFrontDirections, bottomRightFrontXDirections, bottomRightFrontYDirections, bottomRightFrontZDirections);
     }
+
+    @Test
+    void testTurnBottomLeftFront() {
+        ArrayList<Color> bottomLeftFrontColors = new ArrayList<>(Arrays.asList(Color.bottom, Color.left, Color.front));
+        ArrayList<Direction> bottomLeftFrontDirections = new ArrayList<>(Arrays.asList(Direction.down, Direction.left, Direction.front));
+
+        ArrayList<Direction> bottomLeftFrontXDirections = new ArrayList<>(Arrays.asList(Direction.back, Direction.left, Direction.down));
+        ArrayList<Direction> bottomLeftFrontYDirections = new ArrayList<>(Arrays.asList(Direction.down, Direction.front, Direction.right));
+        ArrayList<Direction> bottomLeftFrontZDirections = new ArrayList<>(Arrays.asList(Direction.left, Direction.up, Direction.front));
+
+        _givenCornerPiece_whenTurnedAroundAllAxis_thenColorsXDirectionsYDirectionsZDirections(bottomLeftFront, bottomLeftFrontColors, bottomLeftFrontDirections, bottomLeftFrontXDirections, bottomLeftFrontYDirections, bottomLeftFrontZDirections);
+
+    }
+
 
     @Test
     void moveLeft() {
@@ -189,4 +188,5 @@ class CornerPieceTest {
     @Test
     void moveBackInverted() {
     }
+
 }

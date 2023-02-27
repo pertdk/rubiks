@@ -1,5 +1,8 @@
 package dk.pert.rubiks.rubiksmodel;
 
+import dk.pert.rubiks.rubiksmodel.enums.Color;
+import dk.pert.rubiks.rubiksmodel.enums.Direction;
+import dk.pert.rubiks.rubiksmodel.enums.Move;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,10 +26,10 @@ public class Surface {
      */
     private void left() {
         switch (direction) {
-            case down -> setDirection(Direction.back);
-            case back -> setDirection(Direction.up);
-            case up -> setDirection(Direction.front);
-            case front -> setDirection(Direction.down);
+            case DOWN -> setDirection(Direction.BACK);
+            case BACK -> setDirection(Direction.UP);
+            case UP -> setDirection(Direction.FRONT);
+            case FRONT -> setDirection(Direction.DOWN);
         }
     }
 
@@ -36,10 +39,10 @@ public class Surface {
      */
     private void leftInverted() {
         switch (direction) {
-            case down -> setDirection(Direction.front);
-            case front -> setDirection(Direction.up);
-            case up -> setDirection(Direction.back);
-            case back -> setDirection(Direction.down);
+            case DOWN -> setDirection(Direction.FRONT);
+            case FRONT -> setDirection(Direction.UP);
+            case UP -> setDirection(Direction.BACK);
+            case BACK -> setDirection(Direction.DOWN);
         }
     }
 
@@ -65,10 +68,10 @@ public class Surface {
      */
     private void front() {
         switch (direction) {
-            case down -> setDirection(Direction.left);
-            case left -> setDirection(Direction.up);
-            case up -> setDirection(Direction.right);
-            case right -> setDirection(Direction.down);
+            case DOWN -> setDirection(Direction.LEFT);
+            case LEFT -> setDirection(Direction.UP);
+            case UP -> setDirection(Direction.RIGHT);
+            case RIGHT -> setDirection(Direction.DOWN);
         }
     }
 
@@ -78,10 +81,10 @@ public class Surface {
      */
     private void frontInverted() {
         switch (direction) {
-            case down -> setDirection(Direction.right);
-            case right -> setDirection(Direction.up);
-            case up -> setDirection(Direction.left);
-            case left -> setDirection(Direction.down);
+            case DOWN -> setDirection(Direction.RIGHT);
+            case RIGHT -> setDirection(Direction.UP);
+            case UP -> setDirection(Direction.LEFT);
+            case LEFT -> setDirection(Direction.DOWN);
         }
     }
 
@@ -107,10 +110,10 @@ public class Surface {
      */
     private void up() {
         switch (direction) {
-            case left -> setDirection(Direction.back);
-            case back -> setDirection(Direction.right);
-            case right -> setDirection(Direction.front);
-            case front -> setDirection(Direction.left);
+            case LEFT -> setDirection(Direction.BACK);
+            case BACK -> setDirection(Direction.RIGHT);
+            case RIGHT -> setDirection(Direction.FRONT);
+            case FRONT -> setDirection(Direction.LEFT);
         }
     }
 
@@ -120,10 +123,10 @@ public class Surface {
      */
     private void upInverted() {
         switch (direction) {
-            case left -> setDirection(Direction.front);
-            case front -> setDirection(Direction.right);
-            case right -> setDirection(Direction.back);
-            case back -> setDirection(Direction.left);
+            case LEFT -> setDirection(Direction.FRONT);
+            case FRONT -> setDirection(Direction.RIGHT);
+            case RIGHT -> setDirection(Direction.BACK);
+            case BACK -> setDirection(Direction.LEFT);
         }
     }
 
@@ -145,18 +148,18 @@ public class Surface {
 
     public void move(Move move) {
         switch (move) {
-            case up -> up();
-            case upInverted -> upInverted();
-            case down -> down();
-            case downInverted -> downInverted();
-            case left -> left();
-            case leftInverted -> leftInverted();
-            case right -> right();
-            case rightInverted -> rightInverted();
-            case back -> back();
-            case backInverted -> backInverted();
-            case front -> front();
-            case frontInverted -> frontInverted();
+            case UP -> up();
+            case UP_INVERTED -> upInverted();
+            case DOWN -> down();
+            case DOWN_INVERTED -> downInverted();
+            case LEFT -> left();
+            case LEFT_INVERTED -> leftInverted();
+            case RIGHT -> right();
+            case RIGHT_INVERTED -> rightInverted();
+            case BACK -> back();
+            case BACK_INVERTED -> backInverted();
+            case FRONT -> front();
+            case FRONT_INVERTED -> frontInverted();
         }
     }
 }

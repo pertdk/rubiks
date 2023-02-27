@@ -1,5 +1,8 @@
 package dk.pert.rubiks.rubiksmodel;
 
+import dk.pert.rubiks.rubiksmodel.enums.Color;
+import dk.pert.rubiks.rubiksmodel.enums.Direction;
+
 /**
  * Place description here.
  *
@@ -19,43 +22,43 @@ public class Cube {
 
     private void createCenterPieces() {
         /* Notice all center pieces have exactly two CENTER coordinates */
-        pieces[CENTER][CENTER][FRONT] = new CenterPiece(Direction.front, Color.front);
-        pieces[LEFT][CENTER][CENTER] = new CenterPiece(Direction.left, Color.left);
-        pieces[CENTER][CENTER][BACK] = new CenterPiece(Direction.back, Color.back);
-        pieces[RIGHT][CENTER][CENTER] = new CenterPiece(Direction.right, Color.right);
-        pieces[CENTER][TOP][CENTER] = new CenterPiece(Direction.up, Color.top);
-        pieces[CENTER][BOTTOM][CENTER] = new CenterPiece(Direction.down, Color.bottom);
+        pieces[CENTER][CENTER][FRONT] = new CenterPiece(Direction.FRONT, Color.GREEN);
+        pieces[LEFT][CENTER][CENTER] = new CenterPiece(Direction.LEFT, Color.ORANGE);
+        pieces[CENTER][CENTER][BACK] = new CenterPiece(Direction.BACK, Color.BLUE);
+        pieces[RIGHT][CENTER][CENTER] = new CenterPiece(Direction.RIGHT, Color.RED);
+        pieces[CENTER][TOP][CENTER] = new CenterPiece(Direction.UP, Color.WHITE);
+        pieces[CENTER][BOTTOM][CENTER] = new CenterPiece(Direction.DOWN, Color.YELLOW);
     }
 
     private void createEdgePieces() {
         /* Notice all edge pieces have exactly one CENTER coordinate */
-        pieces[LEFT][TOP][CENTER] = new EdgePiece(Direction.left, Color.left, Direction.up, Color.top);
-        pieces[CENTER][TOP][BACK] = new EdgePiece(Direction.up, Color.top, Direction.back, Color.back);
-        pieces[RIGHT][TOP][CENTER] = new EdgePiece(Direction.right, Color.right, Direction.up, Color.top);
-        pieces[CENTER][TOP][FRONT] = new EdgePiece(Direction.up, Color.top, Direction.front, Color.front);
+        pieces[LEFT][TOP][CENTER] = new EdgePiece(Direction.LEFT, Color.ORANGE, Direction.UP, Color.WHITE);
+        pieces[CENTER][TOP][BACK] = new EdgePiece(Direction.UP, Color.WHITE, Direction.BACK, Color.BLUE);
+        pieces[RIGHT][TOP][CENTER] = new EdgePiece(Direction.RIGHT, Color.RED, Direction.UP, Color.WHITE);
+        pieces[CENTER][TOP][FRONT] = new EdgePiece(Direction.UP, Color.WHITE, Direction.FRONT, Color.GREEN);
 
-        pieces[LEFT][CENTER][FRONT] = new EdgePiece(Direction.left, Color.left, Direction.front, Color.front);
-        pieces[LEFT][CENTER][BACK] = new EdgePiece(Direction.left, Color.left, Direction.back, Color.back);
-        pieces[RIGHT][CENTER][BACK] = new EdgePiece(Direction.right, Color.right, Direction.back, Color.back);
-        pieces[RIGHT][CENTER][FRONT] = new EdgePiece(Direction.right, Color.right, Direction.front, Color.front);
+        pieces[LEFT][CENTER][FRONT] = new EdgePiece(Direction.LEFT, Color.ORANGE, Direction.FRONT, Color.GREEN);
+        pieces[LEFT][CENTER][BACK] = new EdgePiece(Direction.LEFT, Color.ORANGE, Direction.BACK, Color.BLUE);
+        pieces[RIGHT][CENTER][BACK] = new EdgePiece(Direction.RIGHT, Color.RED, Direction.BACK, Color.BLUE);
+        pieces[RIGHT][CENTER][FRONT] = new EdgePiece(Direction.RIGHT, Color.RED, Direction.FRONT, Color.GREEN);
 
-        pieces[LEFT][BOTTOM][CENTER] = new EdgePiece(Direction.left, Color.left, Direction.down, Color.bottom);
-        pieces[CENTER][BOTTOM][BACK] = new EdgePiece(Direction.down, Color.bottom, Direction.back, Color.back);
-        pieces[RIGHT][BOTTOM][CENTER] = new EdgePiece(Direction.right, Color.right, Direction.down, Color.bottom);
-        pieces[CENTER][BOTTOM][FRONT] = new EdgePiece(Direction.down, Color.bottom, Direction.front, Color.front);
+        pieces[LEFT][BOTTOM][CENTER] = new EdgePiece(Direction.LEFT, Color.ORANGE, Direction.DOWN, Color.YELLOW);
+        pieces[CENTER][BOTTOM][BACK] = new EdgePiece(Direction.DOWN, Color.YELLOW, Direction.BACK, Color.BLUE);
+        pieces[RIGHT][BOTTOM][CENTER] = new EdgePiece(Direction.RIGHT, Color.RED, Direction.DOWN, Color.YELLOW);
+        pieces[CENTER][BOTTOM][FRONT] = new EdgePiece(Direction.DOWN, Color.YELLOW, Direction.FRONT, Color.GREEN);
 
     }
 
     private void createCornerPieces() {
         /* Notice corner pieces does not have any CENTER coordinate */
-        pieces[LEFT][TOP][BACK] = new CornerPiece(Direction.left, Color.left, Direction.up, Color.top, Direction.back, Color.back);
-        pieces[LEFT][TOP][FRONT] = new CornerPiece(Direction.left, Color.left, Direction.up, Color.top, Direction.front, Color.front);
-        pieces[LEFT][BOTTOM][BACK] = new CornerPiece(Direction.left, Color.left, Direction.down, Color.bottom, Direction.back, Color.back);
-        pieces[LEFT][BOTTOM][FRONT] = new CornerPiece(Direction.left, Color.left, Direction.down, Color.bottom, Direction.front, Color.front);
-        pieces[RIGHT][TOP][BACK] = new CornerPiece(Direction.left, Color.right, Direction.up, Color.top, Direction.back, Color.back);
-        pieces[RIGHT][TOP][FRONT] = new CornerPiece(Direction.left, Color.right, Direction.up, Color.top, Direction.front, Color.front);
-        pieces[RIGHT][BOTTOM][BACK] = new CornerPiece(Direction.left, Color.right, Direction.down, Color.bottom, Direction.back, Color.back);
-        pieces[RIGHT][BOTTOM][FRONT] = new CornerPiece(Direction.left, Color.right, Direction.down, Color.bottom, Direction.front, Color.front);
+        pieces[LEFT][TOP][BACK] = new CornerPiece(Direction.LEFT, Color.ORANGE, Direction.UP, Color.WHITE, Direction.BACK, Color.BLUE);
+        pieces[LEFT][TOP][FRONT] = new CornerPiece(Direction.LEFT, Color.ORANGE, Direction.UP, Color.WHITE, Direction.FRONT, Color.GREEN);
+        pieces[LEFT][BOTTOM][BACK] = new CornerPiece(Direction.LEFT, Color.ORANGE, Direction.DOWN, Color.YELLOW, Direction.BACK, Color.BLUE);
+        pieces[LEFT][BOTTOM][FRONT] = new CornerPiece(Direction.LEFT, Color.ORANGE, Direction.DOWN, Color.YELLOW, Direction.FRONT, Color.GREEN);
+        pieces[RIGHT][TOP][BACK] = new CornerPiece(Direction.LEFT, Color.RED, Direction.UP, Color.WHITE, Direction.BACK, Color.BLUE);
+        pieces[RIGHT][TOP][FRONT] = new CornerPiece(Direction.LEFT, Color.RED, Direction.UP, Color.WHITE, Direction.FRONT, Color.GREEN);
+        pieces[RIGHT][BOTTOM][BACK] = new CornerPiece(Direction.LEFT, Color.RED, Direction.DOWN, Color.YELLOW, Direction.BACK, Color.BLUE);
+        pieces[RIGHT][BOTTOM][FRONT] = new CornerPiece(Direction.LEFT, Color.RED, Direction.DOWN, Color.YELLOW, Direction.FRONT, Color.GREEN);
     }
 
     public Cube() {

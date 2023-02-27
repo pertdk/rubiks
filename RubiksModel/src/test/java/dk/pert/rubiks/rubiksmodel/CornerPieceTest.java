@@ -140,6 +140,54 @@ class CornerPieceTest {
 
     }
 
+    @Test
+    void testTurnTopLeftBack() {
+        ArrayList<Color> topLeftBackColors = new ArrayList<>(Arrays.asList(Color.top, Color.left, Color.back));
+        ArrayList<Direction> topLeftBackDirections = new ArrayList<>(Arrays.asList(Direction.up, Direction.left, Direction.back));
+
+        ArrayList<Direction> topLeftBackXDirections = new ArrayList<>(Arrays.asList(Direction.front, Direction.left, Direction.up));
+        ArrayList<Direction> topLeftBackYDirections = new ArrayList<>(Arrays.asList(Direction.up, Direction.back, Direction.right));
+        ArrayList<Direction> topLeftBackZDirections = new ArrayList<>(Arrays.asList(Direction.left, Direction.down, Direction.back));
+
+        _givenCornerPiece_whenTurnedAroundAllAxis_thenColorsXDirectionsYDirectionsZDirections(topLeftBack, topLeftBackColors, topLeftBackDirections, topLeftBackXDirections, topLeftBackYDirections, topLeftBackZDirections);
+    }
+
+    @Test
+    void testTurnTopRightBack() {
+        ArrayList<Color> topRightBackColors = new ArrayList<>(Arrays.asList(Color.top, Color.right, Color.back));
+        ArrayList<Direction> topRightBackDirections = new ArrayList<>(Arrays.asList(Direction.up, Direction.right, Direction.back));
+
+        ArrayList<Direction> topRightBackXDirections = new ArrayList<>(Arrays.asList(Direction.back, Direction.right, Direction.down));
+        ArrayList<Direction> topRightBackYDirections = new ArrayList<>(Arrays.asList(Direction.up, Direction.front, Direction.right));
+        ArrayList<Direction> topRightBackZDirections = new ArrayList<>(Arrays.asList(Direction.left, Direction.up, Direction.back));
+
+        _givenCornerPiece_whenTurnedAroundAllAxis_thenColorsXDirectionsYDirectionsZDirections(topRightBack, topRightBackColors, topRightBackDirections, topRightBackXDirections, topRightBackYDirections, topRightBackZDirections);
+    }
+
+    @Test
+    void testTurnBottomRightBack() {
+        ArrayList<Color> bottomRightBackColors = new ArrayList<>(Arrays.asList(Color.bottom, Color.right, Color.back));
+        ArrayList<Direction> bottomRightBackDirections = new ArrayList<>(Arrays.asList(Direction.down, Direction.right, Direction.back));
+
+        ArrayList<Direction> bottomRightBackXDirections = new ArrayList<>(Arrays.asList(Direction.front, Direction.right, Direction.down));
+        ArrayList<Direction> bottomRightBackYDirections = new ArrayList<>(Arrays.asList(Direction.down, Direction.back, Direction.left));
+        ArrayList<Direction> bottomRightBackZDirections = new ArrayList<>(Arrays.asList(Direction.right, Direction.up, Direction.back));
+
+        _givenCornerPiece_whenTurnedAroundAllAxis_thenColorsXDirectionsYDirectionsZDirections(bottomRightBack, bottomRightBackColors, bottomRightBackDirections, bottomRightBackXDirections, bottomRightBackYDirections, bottomRightBackZDirections);
+    }
+
+    @Test
+    void testTurnBottomLeftBack() {
+        ArrayList<Color> bottomLeftBackColors = new ArrayList<>(Arrays.asList(Color.bottom, Color.left, Color.back));
+        ArrayList<Direction> bottomLeftBackDirections = new ArrayList<>(Arrays.asList(Direction.down, Direction.left, Direction.back));
+
+        ArrayList<Direction> bottomLeftBackXDirections = new ArrayList<>(Arrays.asList(Direction.back, Direction.left, Direction.up));
+        ArrayList<Direction> bottomLeftBackYDirections = new ArrayList<>(Arrays.asList(Direction.down, Direction.front, Direction.left));
+        ArrayList<Direction> bottomLeftBackZDirections = new ArrayList<>(Arrays.asList(Direction.right, Direction.down, Direction.back));
+
+        _givenCornerPiece_whenTurnedAroundAllAxis_thenColorsXDirectionsYDirectionsZDirections(bottomLeftBack, bottomLeftBackColors, bottomLeftBackDirections, bottomLeftBackXDirections, bottomLeftBackYDirections, bottomLeftBackZDirections);
+
+    }
 
     @Test
     void moveLeft() {

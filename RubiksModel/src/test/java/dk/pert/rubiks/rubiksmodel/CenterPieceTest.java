@@ -1,5 +1,8 @@
 package dk.pert.rubiks.rubiksmodel;
 
+import dk.pert.rubiks.rubiksmodel.enums.Color;
+import dk.pert.rubiks.rubiksmodel.enums.Direction;
+import dk.pert.rubiks.rubiksmodel.enums.Move;
 import org.apache.log4j.Logger;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -72,62 +75,62 @@ class CenterPieceTest {
 
     @Test
     void moveLeft() {
-        move(Move.left);
+        move(Move.LEFT);
     }
 
     @Test
     void moveLeftInverted() {
-        move(Move.leftInverted);
+        move(Move.LEFT_INVERTED);
     }
 
     @Test
     void moveRight() {
-        move(Move.right);
+        move(Move.RIGHT);
     }
 
     @Test
     void moveRightInverted() {
-        move(Move.rightInverted);
+        move(Move.RIGHT_INVERTED);
     }
 
     @Test
     void moveUp() {
-        move(Move.up);
+        move(Move.UP);
     }
 
     @Test
     void moveUpInverted() {
-        move(Move.upInverted);
+        move(Move.UP_INVERTED);
     }
 
     @Test
     void moveDown() {
-        move(Move.down);
+        move(Move.DOWN);
     }
 
     @Test
     void moveDownInverted() {
-        move(Move.downInverted);
+        move(Move.DOWN_INVERTED);
     }
 
     @Test
     void moveFront() {
-        move(Move.front);
+        move(Move.FRONT);
     }
 
     @Test
     void moveFrontInverted() {
-        move(Move.frontInverted);
+        move(Move.FRONT_INVERTED);
     }
 
     @Test
     void moveBack() {
-        move(Move.back);
+        move(Move.BACK);
     }
 
     @Test
     void moveBackInverted() {
-        move(Move.backInverted);
+        move(Move.BACK_INVERTED);
     }
 
     @Test

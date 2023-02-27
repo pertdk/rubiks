@@ -1,9 +1,13 @@
 package dk.pert.rubiks.rubiksmodel;
 
+import dk.pert.rubiks.rubiksmodel.enums.*;
+
 import java.util.HashMap;
 
 /**
- * Place description here.
+ * AbstractPiece is parent to all types of pieces in the Rubik's Cube.
+ * The AbstracePiece class contains attributes and methods that are common to all types of pieces,
+ * as well as some abstract method, that all pieces must implement.
  *
  * @author PET@nykredit.dk
  */
@@ -101,41 +105,41 @@ public abstract class AbstractPiece {
 
     public void move(Move move) {
         switch (move) {
-            case left -> moveLeft();
-            case leftInverted -> moveLeftInverted();
-            case right -> moveRight();
-            case rightInverted -> moveRightInverted();
-            case up -> moveUp();
-            case upInverted -> moveUpInverted();
-            case down -> moveDown();
-            case downInverted -> moveDownInverted();
-            case front -> moveFront();
-            case frontInverted -> moveFrontInverted();
-            case back -> moveBack();
-            case backInverted -> moveBackInverted();
+            case LEFT -> moveLeft();
+            case LEFT_INVERTED -> moveLeftInverted();
+            case RIGHT -> moveRight();
+            case RIGHT_INVERTED -> moveRightInverted();
+            case UP -> moveUp();
+            case UP_INVERTED -> moveUpInverted();
+            case DOWN -> moveDown();
+            case DOWN_INVERTED -> moveDownInverted();
+            case FRONT -> moveFront();
+            case FRONT_INVERTED -> moveFrontInverted();
+            case BACK -> moveBack();
+            case BACK_INVERTED -> moveBackInverted();
         }
     }
 
     public void turnClockwiseAround(Axis axis) {
         switch (axis) {
-            case xAxis -> turnClockwiseAroundXAxis();
-            case yAxis -> turnClockwiseAroundYAxis();
-            case zAxis -> turnClockwiseAroundZAxis();
+            case X -> turnClockwiseAroundXAxis();
+            case Y -> turnClockwiseAroundYAxis();
+            case Z -> turnClockwiseAroundZAxis();
         }
     }
 
     public void turnCounterClockwiseAround(Axis axis) {
         switch (axis) {
-            case xAxis -> turnCounterclockwiseAroundXAxis();
-            case yAxis -> turnCounterclockwiseAroundYAxis();
-            case zAxis -> turnCounterclockwiseAroundZAxis();
+            case X -> turnCounterclockwiseAroundXAxis();
+            case Y -> turnCounterclockwiseAroundYAxis();
+            case Z -> turnCounterclockwiseAroundZAxis();
         }
     }
 
     public void turn(Turn turn, Axis axis) {
         switch (turn) {
-            case clockWise -> turnClockwiseAround(axis);
-            case counterClockWise -> turnCounterClockwiseAround(axis);
+            case CLOCK_WISE -> turnClockwiseAround(axis);
+            case COUNTER_CLOCK_WISE -> turnCounterClockwiseAround(axis);
         }
     }
 

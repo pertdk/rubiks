@@ -1,4 +1,4 @@
-package dk.pert.rubiks.rubiksmodel;
+package dk.pert.rubiks.rubiksmodel.enums;
 
 /**
  * Place description here.
@@ -7,5 +7,5 @@ package dk.pert.rubiks.rubiksmodel;
  */
 
 public enum Direction {
-    front, back, left, right, up, down
+    FRONT, BACK, LEFT, RIGHT, UP, DOWN
 }

@@ -1,5 +1,8 @@
 package dk.pert.rubiks.rubiksmodel;
 
+import dk.pert.rubiks.rubiksmodel.enums.Color;
+import dk.pert.rubiks.rubiksmodel.enums.Direction;
+
 /**
  * Place description here.
  *
@@ -16,65 +19,65 @@ public class CornerPiece extends AbstractPiece {
     }
 
     private void moveBack2Up() {
-        moveColor(Direction.back, Direction.up);
+        moveColor(Direction.BACK, Direction.UP);
     }
 
     private void moveFront2Down() {
-        moveColor(Direction.front, Direction.down);
+        moveColor(Direction.FRONT, Direction.DOWN);
     }
 
     private void moveBack2Down() {
-        moveColor(Direction.back, Direction.down);
+        moveColor(Direction.BACK, Direction.DOWN);
     }
 
     private void moveFront2Up() {
-        moveColor(Direction.front, Direction.up);
+        moveColor(Direction.FRONT, Direction.UP);
     }
 
     private void moveFront2Left() {
-        moveColor(Direction.front, Direction.left);
+        moveColor(Direction.FRONT, Direction.LEFT);
     }
 
     private void moveFront2Right() {
-        moveColor(Direction.front, Direction.right);
+        moveColor(Direction.FRONT, Direction.RIGHT);
     }
 
     private void moveBack2Right() {
-        moveColor(Direction.back, Direction.right);
+        moveColor(Direction.BACK, Direction.RIGHT);
     }
 
     private void moveBack2Left() {
-        moveColor(Direction.back, Direction.left);
+        moveColor(Direction.BACK, Direction.LEFT);
     }
 
     private void moveLeft2Up() {
-        moveColor(Direction.left, Direction.up);
+        moveColor(Direction.LEFT, Direction.UP);
     }
 
     private void moveRight2Down() {
-        moveColor(Direction.right, Direction.down);
+        moveColor(Direction.RIGHT, Direction.DOWN);
     }
 
     private void moveLeft2Down() {
-        moveColor(Direction.left, Direction.down);
+        moveColor(Direction.LEFT, Direction.DOWN);
     }
 
     private void moveRight2Up() {
-        moveColor(Direction.right, Direction.up);
+        moveColor(Direction.RIGHT, Direction.UP);
     }
 
     private void turnClockwiseAroundXAxisLeft() {
         Direction currentDirection, newDirection;
-        if (surfaces.containsKey(Direction.down)) {
-            currentDirection = Direction.down;
-            newDirection = Direction.back;
+        if (surfaces.containsKey(Direction.DOWN)) {
+            currentDirection = Direction.DOWN;
+            newDirection = Direction.BACK;
         } else {
-            currentDirection = Direction.up;
-            newDirection = Direction.front;
+            currentDirection = Direction.UP;
+            newDirection = Direction.FRONT;
         }
         Color currentColor = surfaces.get(currentDirection);
         surfaces.remove(currentDirection);
-        if (surfaces.containsKey(Direction.front)) {
+        if (surfaces.containsKey(Direction.FRONT)) {
             moveFront2Down();
         } else {
             moveBack2Up();
@@ -84,16 +87,16 @@ public class CornerPiece extends AbstractPiece {
 
     private void turnCounterclockwiseAroundXAxisLeft() {
         Direction currentDirection, newDirection;
-        if (surfaces.containsKey(Direction.down)) {
-            currentDirection = Direction.down;
-            newDirection = Direction.front;
+        if (surfaces.containsKey(Direction.DOWN)) {
+            currentDirection = Direction.DOWN;
+            newDirection = Direction.FRONT;
         } else {
-            currentDirection = Direction.up;
-            newDirection = Direction.back;
+            currentDirection = Direction.UP;
+            newDirection = Direction.BACK;
         }
         Color currentColor = surfaces.get(currentDirection);
         surfaces.remove(currentDirection);
-        if (surfaces.containsKey(Direction.front)) {
+        if (surfaces.containsKey(Direction.FRONT)) {
             moveFront2Up();
         } else {
             moveBack2Down();
@@ -111,7 +114,7 @@ public class CornerPiece extends AbstractPiece {
 
 
     public void turnClockwiseAroundXAxis() {
-        if (surfaces.containsKey(Direction.left)) {
+        if (surfaces.containsKey(Direction.LEFT)) {
             turnClockwiseAroundXAxisLeft();
         } else {
             turnClockwiseAroundXAxisRight();
@@ -119,7 +122,7 @@ public class CornerPiece extends AbstractPiece {
     }
 
     public void turnCounterclockwiseAroundXAxis() {
-        if (surfaces.containsKey(Direction.left)) {
+        if (surfaces.containsKey(Direction.LEFT)) {
             turnCounterclockwiseAroundXAxisLeft();
         } else {
             turnCounterclockwiseAroundXAxisRight();
@@ -128,16 +131,16 @@ public class CornerPiece extends AbstractPiece {
 
     private void turnClockwiseAroundYAxisUp() {
         Direction currentDirection, newDirection;
-        if (surfaces.containsKey(Direction.left)) {
-            currentDirection = Direction.left;
-            newDirection = Direction.back;
+        if (surfaces.containsKey(Direction.LEFT)) {
+            currentDirection = Direction.LEFT;
+            newDirection = Direction.BACK;
         } else {
-            currentDirection = Direction.right;
-            newDirection = Direction.front;
+            currentDirection = Direction.RIGHT;
+            newDirection = Direction.FRONT;
         }
         Color currentColor = surfaces.get(currentDirection);
         surfaces.remove(currentDirection);
-        if (surfaces.containsKey(Direction.front)) {
+        if (surfaces.containsKey(Direction.FRONT)) {
             moveFront2Left();
         } else {
             moveBack2Right();
@@ -147,16 +150,16 @@ public class CornerPiece extends AbstractPiece {
 
     private void turnCounterclockwiseAroundYAxisUp() {
         Direction currentDirection, newDirection;
-        if (surfaces.containsKey(Direction.left)) {
-            currentDirection = Direction.left;
-            newDirection = Direction.front;
+        if (surfaces.containsKey(Direction.LEFT)) {
+            currentDirection = Direction.LEFT;
+            newDirection = Direction.FRONT;
         } else {
-            currentDirection = Direction.right;
-            newDirection = Direction.back;
+            currentDirection = Direction.RIGHT;
+            newDirection = Direction.BACK;
         }
         Color currentColor = surfaces.get(currentDirection);
         surfaces.remove(currentDirection);
-        if (surfaces.containsKey(Direction.front)) {
+        if (surfaces.containsKey(Direction.FRONT)) {
             moveFront2Right();
         } else {
             moveBack2Left();
@@ -173,7 +176,7 @@ public class CornerPiece extends AbstractPiece {
     }
 
     public void turnClockwiseAroundYAxis() {
-        if (surfaces.containsKey(Direction.up)) {
+        if (surfaces.containsKey(Direction.UP)) {
             turnClockwiseAroundYAxisUp();
         } else {
             turnClockwiseAroundYAxisDown();
@@ -181,7 +184,7 @@ public class CornerPiece extends AbstractPiece {
     }
 
     public void turnCounterclockwiseAroundYAxis() {
-        if (surfaces.containsKey(Direction.up)) {
+        if (surfaces.containsKey(Direction.UP)) {
             turnCounterclockwiseAroundYAxisUp();
         } else {
             turnCounterclockwiseAroundYAxisDown();
@@ -190,16 +193,16 @@ public class CornerPiece extends AbstractPiece {
 
     private void turnClockwiseAroundZAxisFront() {
         Direction currentDirection, newDirection;
-        if (surfaces.containsKey(Direction.up)) {
-            currentDirection = Direction.up;
-            newDirection = Direction.right;
+        if (surfaces.containsKey(Direction.UP)) {
+            currentDirection = Direction.UP;
+            newDirection = Direction.RIGHT;
         } else {
-            currentDirection = Direction.down;
-            newDirection = Direction.left;
+            currentDirection = Direction.DOWN;
+            newDirection = Direction.LEFT;
         }
         Color currentColor = surfaces.get(currentDirection);
         surfaces.remove(currentDirection);
-        if (surfaces.containsKey(Direction.left)) {
+        if (surfaces.containsKey(Direction.LEFT)) {
             moveLeft2Up();
         } else {
             moveRight2Down();
@@ -209,16 +212,16 @@ public class CornerPiece extends AbstractPiece {
 
     private void turnCounterclockwiseAroundZAxisFront() {
         Direction currentDirection, newDirection;
-        if (surfaces.containsKey(Direction.up)) {
-            currentDirection = Direction.up;
-            newDirection = Direction.left;
+        if (surfaces.containsKey(Direction.UP)) {
+            currentDirection = Direction.UP;
+            newDirection = Direction.LEFT;
         } else {
-            currentDirection = Direction.down;
-            newDirection = Direction.right;
+            currentDirection = Direction.DOWN;
+            newDirection = Direction.RIGHT;
         }
         Color currentColor = surfaces.get(currentDirection);
         surfaces.remove(currentDirection);
-        if (surfaces.containsKey(Direction.left)) {
+        if (surfaces.containsKey(Direction.LEFT)) {
             moveLeft2Down();
         } else {
             moveRight2Up();
@@ -235,7 +238,7 @@ public class CornerPiece extends AbstractPiece {
     }
 
     public void turnClockwiseAroundZAxis() {
-        if (surfaces.containsKey(Direction.front)) {
+        if (surfaces.containsKey(Direction.FRONT)) {
             turnClockwiseAroundZAxisFront();
         } else {
             turnClockwiseAroundZAxisBack();
@@ -243,7 +246,7 @@ public class CornerPiece extends AbstractPiece {
     }
 
     public void turnCounterclockwiseAroundZAxis() {
-        if (surfaces.containsKey(Direction.front)) {
+        if (surfaces.containsKey(Direction.FRONT)) {
             turnCounterclockwiseAroundZAxisFront();
         } else {
             turnCounterclockwiseAroundZAxisBack();
@@ -252,14 +255,14 @@ public class CornerPiece extends AbstractPiece {
 
     @Override
     protected void moveLeft() {
-        if (surfaces.containsKey(Direction.left)) {
+        if (surfaces.containsKey(Direction.LEFT)) {
             turnClockwiseAroundXAxis();
         }
     }
 
     @Override
     protected void moveLeftInverted() {
-        if (surfaces.containsKey(Direction.left)) {
+        if (surfaces.containsKey(Direction.LEFT)) {
             turnCounterclockwiseAroundXAxis();
         }
     }
@@ -267,70 +270,70 @@ public class CornerPiece extends AbstractPiece {
 
     @Override
     protected void moveRight() {
-        if (surfaces.containsKey(Direction.right)) {
+        if (surfaces.containsKey(Direction.RIGHT)) {
             turnCounterclockwiseAroundXAxis();
         }
     }
 
     @Override
     protected void moveRightInverted() {
-        if (surfaces.containsKey(Direction.right)) {
+        if (surfaces.containsKey(Direction.RIGHT)) {
             turnClockwiseAroundXAxis();
         }
     }
 
     @Override
     protected void moveUp() {
-        if (surfaces.containsKey(Direction.up)) {
+        if (surfaces.containsKey(Direction.UP)) {
             turnClockwiseAroundYAxis();
         }
     }
 
     @Override
     protected void moveUpInverted() {
-        if (surfaces.containsKey(Direction.up)) {
+        if (surfaces.containsKey(Direction.UP)) {
             turnCounterclockwiseAroundYAxis();
         }
     }
 
     @Override
     protected void moveDown() {
-        if (surfaces.containsKey(Direction.down)) {
+        if (surfaces.containsKey(Direction.DOWN)) {
             turnCounterclockwiseAroundYAxis();
         }
     }
 
     @Override
     protected void moveDownInverted() {
-        if (surfaces.containsKey(Direction.down)) {
+        if (surfaces.containsKey(Direction.DOWN)) {
             turnClockwiseAroundYAxis();
         }
     }
 
     @Override
     protected void moveFront() {
-        if (surfaces.containsKey(Direction.front)) {
+        if (surfaces.containsKey(Direction.FRONT)) {
             turnClockwiseAroundZAxis();
         }
     }
 
     @Override
     protected void moveFrontInverted() {
-        if (surfaces.containsKey(Direction.front)) {
+        if (surfaces.containsKey(Direction.FRONT)) {
             turnCounterclockwiseAroundZAxis();
         }
     }
 
     @Override
     protected void moveBack() {
-        if (surfaces.containsKey(Direction.back)) {
+        if (surfaces.containsKey(Direction.BACK)) {
             turnCounterclockwiseAroundZAxis();
         }
     }
 
     @Override
     protected void moveBackInverted() {
-        if (surfaces.containsKey(Direction.back)) {
+        if (surfaces.containsKey(Direction.BACK)) {
             turnClockwiseAroundZAxis();
         }
     }

@@ -22,6 +22,7 @@
         <maven-failsafe-plugin.version>3.0.0-M7</maven-failsafe-plugin.version>
         <annotations.version>24.0.1</annotations.version>
         <log4j12-api.version>2.0-alpha1</log4j12-api.version>
+        <mockito-core.version>2.28.2</mockito-core.version>
     </properties>
 
     <dependencyManagement>
@@ -52,6 +53,12 @@
                 <groupId>org.jetbrains</groupId>
                 <artifactId>annotations</artifactId>
                 <version>${annotations.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockito-core.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -3,9 +3,10 @@ package dk.pert.rubiks.rubiksmodel;
 import dk.pert.rubiks.rubiksmodel.enums.Color;
 import dk.pert.rubiks.rubiksmodel.enums.Direction;
 import dk.pert.rubiks.rubiksmodel.enums.Move;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.Objects;
 
 /**
  * Place description here.
@@ -15,10 +16,20 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
-public class Surface {
+public class Surface implements ISurface {
+    /**
+     * A surface should be created with a color, that is then never changed.
+     */
+    private final Color color;
+    /**
+     * A surface should be created with a direction. The direction of the surface can change.
+     */
     private Direction direction;
-    private Color color;
+
+    public Surface(Color color, Direction direction) {
+        this.color = color;
+        this.direction = direction;
+    }
 
     /**
      * Implementation of the Rubik's L-move regarding a surface
@@ -146,6 +157,7 @@ public class Surface {
         up();
     }
 
+    @Override
     public void move(Move move) {
         switch (move) {
             case UP -> up();
@@ -161,5 +173,24 @@ public class Surface {
             case FRONT -> front();
             case FRONT_INVERTED -> frontInverted();
         }
+    }
+
+    public Color getColor() {
+        return this.color;
+    }
+
+    @Override
+    public boolean equals(final Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null) {
+            return false;
+        }
+        if (getClass() != object.getClass()) {
+            return false;
+        }
+        Surface surface = (Surface) object;
+        return Objects.equals(getColor(), surface.getColor());
     }
 }

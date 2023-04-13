@@ -1,78 +1,74 @@
 package dk.pert.rubiks.rubiksmodel;
 
-import dk.pert.rubiks.rubiksmodel.enums.Color;
-import dk.pert.rubiks.rubiksmodel.enums.Direction;
-
 /**
  * Place description here.
  *
  * @author PET@nykredit.dk
  */
 
-public class CenterPiece extends AbstractPiece {
+public class CenterPiece extends AbstractPiece implements IPiece {
 
-    public CenterPiece(Direction direction, Color color) {
-        super(1);
-        setSurface(direction, color);
+    public CenterPiece(ISurface surface) {
+        super(surface);
     }
 
     @Override
-    protected void moveLeft() {
+    public void moveLeft() {
         /* CenterPieces will never move */
     }
 
     @Override
-    protected void moveLeftInverted() {
+    public void moveLeftInverted() {
         /* CenterPieces will never move */
     }
 
     @Override
-    protected void moveRight() {
+    public void moveRight() {
         /* CenterPieces will never move */
     }
 
     @Override
-    protected void moveRightInverted() {
+    public void moveRightInverted() {
         /* CenterPieces will never move */
     }
 
     @Override
-    protected void moveUp() {
+    public void moveUp() {
         /* CenterPieces will never move */
     }
 
     @Override
-    protected void moveUpInverted() {
+    public void moveUpInverted() {
         /* CenterPieces will never move */
     }
 
     @Override
-    protected void moveDown() {
+    public void moveDown() {
         /* CenterPieces will never move */
     }
 
     @Override
-    protected void moveDownInverted() {
+    public void moveDownInverted() {
         /* CenterPieces will never move */
     }
 
     @Override
-    protected void moveFront() {
+    public void moveFront() {
         /* CenterPieces will never move */
     }
 
     @Override
-    protected void moveFrontInverted() {
+    public void moveFrontInverted() {
         /* CenterPieces will never move */
     }
 
     @Override
-    protected void moveBack() {
+    public void moveBack() {
         /* CenterPieces will never move */
     }
 
     @Override
-    protected void moveBackInverted() {
+    public void moveBackInverted() {
         /* CenterPieces will never move */
     }
 

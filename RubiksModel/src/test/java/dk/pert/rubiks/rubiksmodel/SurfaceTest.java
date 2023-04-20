@@ -150,7 +150,7 @@ class SurfaceTest {
         IPiece piece = Mockito.mock(IPiece.class);
 
         assertEquals(greenDown1, greenDown1);
-        assertNotEquals(null, greenDown1);
+        assertNotEquals(greenDown1, null);
         //noinspection SimplifiableAssertion,EqualsBetweenInconvertibleTypes
         assertFalse(greenDown1.equals(piece));
         assertEquals(greenDown1, greenDown2);

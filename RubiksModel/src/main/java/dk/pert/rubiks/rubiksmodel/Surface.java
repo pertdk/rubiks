@@ -50,7 +50,7 @@ public class Surface implements ISurface {
      */
     private void leftInverted() {
         switch (direction) {
-            case DOWN -> setDirection(Direction.FRONT);
+            case DOWN    -> setDirection(Direction.FRONT);
             case FRONT -> setDirection(Direction.UP);
             case UP -> setDirection(Direction.BACK);
             case BACK -> setDirection(Direction.DOWN);

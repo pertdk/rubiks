@@ -18,6 +18,13 @@ import static dk.pert.rubiks.rubiksmodel.ErrorMessages.*;
 
 public abstract class AbstractPiece implements IPiece {
     protected List<ISurface> surfaces;
+    private boolean hadSurfaceLeft = false;
+    private boolean hadSurfaceRight = false;
+    private boolean hadSurfaceBack = false;
+    private boolean hadSurfaceFront = false;
+    private boolean hadSurfaceDown = false;
+    private boolean hadSurfaceUp = false;
+
 
     protected AbstractPiece(ISurface @NotNull ... surfaces) throws IllegalArgumentException {
         checkNumberOfSurfaces(surfaces);
@@ -48,6 +55,15 @@ public abstract class AbstractPiece implements IPiece {
         }
     }
 
+    private void checkCurrentSurfaces() {
+        hadSurfaceLeft = hasSurface(Direction.LEFT);
+        hadSurfaceRight = hasSurface(Direction.RIGHT);
+        hadSurfaceBack = hasSurface(Direction.BACK);
+        hadSurfaceDown = hasSurface(Direction.DOWN);
+        hadSurfaceFront = hasSurface(Direction.FRONT);
+        hadSurfaceUp = hasSurface(Direction.UP);
+    }
+
 
     @Override
     public ISurface getSurface(Direction direction) {
@@ -74,51 +90,105 @@ public abstract class AbstractPiece implements IPiece {
     }
 
     @Override
-    public void turnClockwiseAroundXAxis() {
-        moveSurface(Direction.BACK, Direction.DOWN);
-        moveSurface(Direction.DOWN, Direction.FRONT);
-        moveSurface(Direction.FRONT, Direction.UP);
-        moveSurface(Direction.UP, Direction.BACK);
+    public void turnCounterclockwiseAroundXAxis() {
+        checkCurrentSurfaces();
+        if (hadSurfaceBack) {
+            moveSurface(Direction.BACK, Direction.DOWN);
+        }
+        if (hadSurfaceDown) {
+            moveSurface(Direction.DOWN, Direction.FRONT);
+        }
+        if (hadSurfaceFront) {
+            moveSurface(Direction.FRONT, Direction.UP);
+        }
+        if (hadSurfaceUp) {
+            moveSurface(Direction.UP, Direction.BACK);
+        }
     }
 
     @Override
-    public void turnCounterclockwiseAroundXAxis() {
-        moveSurface(Direction.BACK, Direction.UP);
-        moveSurface(Direction.UP, Direction.FRONT);
-        moveSurface(Direction.FRONT, Direction.DOWN);
-        moveSurface(Direction.DOWN, Direction.BACK);
+    public void turnClockwiseAroundXAxis() {
+        checkCurrentSurfaces();
+        if (hadSurfaceBack) {
+            moveSurface(Direction.BACK, Direction.UP);
+        }
+        if (hadSurfaceUp) {
+            moveSurface(Direction.UP, Direction.FRONT);
+        }
+        if (hadSurfaceFront) {
+            moveSurface(Direction.FRONT, Direction.DOWN);
+        }
+        if (hadSurfaceDown) {
+            moveSurface(Direction.DOWN, Direction.BACK);
+        }
     }
 
     @Override
     public void turnClockwiseAroundYAxis() {
-        moveSurface(Direction.LEFT, Direction.BACK);
-        moveSurface(Direction.BACK, Direction.RIGHT);
-        moveSurface(Direction.RIGHT, Direction.FRONT);
-        moveSurface(Direction.FRONT, Direction.LEFT);
+        checkCurrentSurfaces();
+        if (hadSurfaceLeft) {
+            moveSurface(Direction.LEFT, Direction.BACK);
+        }
+        if (hadSurfaceBack) {
+            moveSurface(Direction.BACK, Direction.RIGHT);
+        }
+        if (hadSurfaceRight) {
+            moveSurface(Direction.RIGHT, Direction.FRONT);
+        }
+        if (hadSurfaceFront) {
+            moveSurface(Direction.FRONT, Direction.LEFT);
+        }
     }
 
     @Override
     public void turnCounterclockwiseAroundYAxis() {
-        moveSurface(Direction.LEFT, Direction.FRONT);
-        moveSurface(Direction.FRONT, Direction.RIGHT);
-        moveSurface(Direction.RIGHT, Direction.BACK);
-        moveSurface(Direction.BACK, Direction.LEFT);
+        checkCurrentSurfaces();
+        if (hadSurfaceLeft) {
+            moveSurface(Direction.LEFT, Direction.FRONT);
+        }
+        if (hadSurfaceFront) {
+            moveSurface(Direction.FRONT, Direction.RIGHT);
+        }
+        if (hadSurfaceRight) {
+            moveSurface(Direction.RIGHT, Direction.BACK);
+        }
+        if (hadSurfaceBack) {
+            moveSurface(Direction.BACK, Direction.LEFT);
+        }
     }
 
     @Override
     public void turnClockwiseAroundZAxis() {
-        moveSurface(Direction.UP, Direction.RIGHT);
-        moveSurface(Direction.RIGHT, Direction.DOWN);
-        moveSurface(Direction.DOWN, Direction.LEFT);
-        moveSurface(Direction.LEFT, Direction.UP);
+        checkCurrentSurfaces();
+        if (hadSurfaceUp) {
+            moveSurface(Direction.UP, Direction.RIGHT);
+        }
+        if (hadSurfaceRight) {
+            moveSurface(Direction.RIGHT, Direction.DOWN);
+        }
+        if (hadSurfaceDown) {
+            moveSurface(Direction.DOWN, Direction.LEFT);
+        }
+        if (hadSurfaceLeft) {
+            moveSurface(Direction.LEFT, Direction.UP);
+        }
     }
 
     @Override
     public void turnCounterclockwiseAroundZAxis() {
-        moveSurface(Direction.UP, Direction.LEFT);
-        moveSurface(Direction.LEFT, Direction.DOWN);
-        moveSurface(Direction.DOWN, Direction.RIGHT);
-        moveSurface(Direction.RIGHT, Direction.UP);
+        checkCurrentSurfaces();
+        if (hadSurfaceUp) {
+            moveSurface(Direction.UP, Direction.LEFT);
+        }
+        if (hadSurfaceLeft) {
+            moveSurface(Direction.LEFT, Direction.DOWN);
+        }
+        if (hadSurfaceDown) {
+            moveSurface(Direction.DOWN, Direction.RIGHT);
+        }
+        if (hadSurfaceRight) {
+            moveSurface(Direction.RIGHT, Direction.UP);
+        }
     }
 
     @Override
@@ -167,7 +237,7 @@ public abstract class AbstractPiece implements IPiece {
     @Override
     public void moveDown() {
         if (hasSurface(Direction.DOWN)) {
-            turnCounterclockwiseAroundZAxis();
+            turnCounterclockwiseAroundYAxis();
         }
     }
 
@@ -194,14 +264,14 @@ public abstract class AbstractPiece implements IPiece {
 
     @Override
     public void moveBack() {
-        if (hasSurface(Direction.FRONT)) {
+        if (hasSurface(Direction.BACK)) {
             turnCounterclockwiseAroundZAxis();
         }
     }
 
     @Override
     public void moveBackInverted() {
-        if (hasSurface(Direction.FRONT)) {
+        if (hasSurface(Direction.BACK)) {
             turnClockwiseAroundZAxis();
         }
     }

@@ -1,6 +1,7 @@
-package dk.pert.rubiks.rubiksmodel;
+package dk.pert.rubiks.model.pieces;
 
-import dk.pert.rubiks.rubiksmodel.enums.*;
+import dk.pert.rubiks.model.Surface;
+import dk.pert.rubiks.model.enums.*;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;
 

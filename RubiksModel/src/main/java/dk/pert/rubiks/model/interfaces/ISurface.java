@@ -1,8 +1,8 @@
-package dk.pert.rubiks.rubiksmodel;
+package dk.pert.rubiks.model.interfaces;
 
-import dk.pert.rubiks.rubiksmodel.enums.Color;
-import dk.pert.rubiks.rubiksmodel.enums.Direction;
-import dk.pert.rubiks.rubiksmodel.enums.Move;
+import dk.pert.rubiks.model.enums.Color;
+import dk.pert.rubiks.model.enums.Direction;
+import dk.pert.rubiks.model.enums.Move;
 
 /**
  * A surface is something that is created with a certain color, and a certain direction.

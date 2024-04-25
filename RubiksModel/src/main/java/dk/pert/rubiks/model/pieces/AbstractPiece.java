@@ -1,12 +1,15 @@
-package dk.pert.rubiks.rubiksmodel;
+package dk.pert.rubiks.model.pieces;
 
-import dk.pert.rubiks.rubiksmodel.enums.*;
+import dk.pert.rubiks.model.enums.*;
+import dk.pert.rubiks.model.interfaces.IPiece;
+import dk.pert.rubiks.model.interfaces.ISurface;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
-import static dk.pert.rubiks.rubiksmodel.ErrorMessages.*;
+import static dk.pert.rubiks.model.interfaces.ErrorMessages.*;
 
 /**
  * AbstractPiece is parent to all types of pieces in the Rubik's Cube.
@@ -291,7 +294,7 @@ public abstract class AbstractPiece implements IPiece {
             case FRONT -> moveFront();
             case FRONT_INVERTED -> moveFrontInverted();
             case BACK -> moveBack();
-            case BACK_INVERTED -> moveBackInverted();
+            default -> moveBackInverted();
         }
     }
 
@@ -300,7 +303,7 @@ public abstract class AbstractPiece implements IPiece {
         switch (axis) {
             case X -> turnClockwiseAroundXAxis();
             case Y -> turnClockwiseAroundYAxis();
-            case Z -> turnClockwiseAroundZAxis();
+            default -> turnClockwiseAroundZAxis();
         }
     }
 
@@ -309,15 +312,16 @@ public abstract class AbstractPiece implements IPiece {
         switch (axis) {
             case X -> turnCounterclockwiseAroundXAxis();
             case Y -> turnCounterclockwiseAroundYAxis();
-            case Z -> turnCounterclockwiseAroundZAxis();
+            default -> turnCounterclockwiseAroundZAxis();
         }
     }
 
     @Override
     public void turn(Turn turn, Axis axis) {
-        switch (turn) {
-            case CLOCK_WISE -> turnClockwiseAround(axis);
-            case COUNTER_CLOCK_WISE -> turnCounterClockwiseAround(axis);
+        if (Objects.requireNonNull(turn) == Turn.CLOCK_WISE) {
+            turnClockwiseAround(axis);
+        } else {
+            turnCounterClockwiseAround(axis);
         }
     }
 

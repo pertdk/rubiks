@@ -1,4 +1,4 @@
-package dk.pert.rubiks.rubiksmodel.enums;
+package dk.pert.rubiks.model.enums;
 
 /**
  * Represents the possible colors of surfaces in the Rubik's cube.

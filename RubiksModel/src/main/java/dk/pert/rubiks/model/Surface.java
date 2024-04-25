@@ -1,8 +1,9 @@
-package dk.pert.rubiks.rubiksmodel;
+package dk.pert.rubiks.model;
 
-import dk.pert.rubiks.rubiksmodel.enums.Color;
-import dk.pert.rubiks.rubiksmodel.enums.Direction;
-import dk.pert.rubiks.rubiksmodel.enums.Move;
+import dk.pert.rubiks.model.enums.Color;
+import dk.pert.rubiks.model.enums.Direction;
+import dk.pert.rubiks.model.enums.Move;
+import dk.pert.rubiks.model.interfaces.ISurface;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -50,7 +51,7 @@ public class Surface implements ISurface {
      */
     private void leftInverted() {
         switch (direction) {
-            case DOWN    -> setDirection(Direction.FRONT);
+            case DOWN -> setDirection(Direction.FRONT);
             case FRONT -> setDirection(Direction.UP);
             case UP -> setDirection(Direction.BACK);
             case BACK -> setDirection(Direction.DOWN);
@@ -171,12 +172,8 @@ public class Surface implements ISurface {
             case BACK -> back();
             case BACK_INVERTED -> backInverted();
             case FRONT -> front();
-            case FRONT_INVERTED -> frontInverted();
+            default -> frontInverted();
         }
-    }
-
-    public Color getColor() {
-        return this.color;
     }
 
     @Override

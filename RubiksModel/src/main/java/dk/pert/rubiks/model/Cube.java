@@ -1,7 +1,11 @@
-package dk.pert.rubiks.rubiksmodel;
+package dk.pert.rubiks.model;
 
-import dk.pert.rubiks.rubiksmodel.enums.Color;
-import dk.pert.rubiks.rubiksmodel.enums.Direction;
+import dk.pert.rubiks.model.enums.Color;
+import dk.pert.rubiks.model.enums.Direction;
+import dk.pert.rubiks.model.interfaces.IPiece;
+import dk.pert.rubiks.model.pieces.CenterPiece;
+import dk.pert.rubiks.model.pieces.CornerPiece;
+import dk.pert.rubiks.model.pieces.EdgePiece;
 
 /**
  * Place description here.

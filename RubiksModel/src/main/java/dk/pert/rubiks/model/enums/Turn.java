@@ -1,4 +1,4 @@
-package dk.pert.rubiks.rubiksmodel.enums;
+package dk.pert.rubiks.model.enums;
 
 public enum Turn {
     CLOCK_WISE,

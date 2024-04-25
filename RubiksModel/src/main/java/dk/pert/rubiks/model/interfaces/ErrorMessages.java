@@ -1,4 +1,4 @@
-package dk.pert.rubiks.rubiksmodel;
+package dk.pert.rubiks.model.interfaces;
 
 public interface ErrorMessages {
     String ILLEGAL_NUMBER_OF_SURFACES_FORMAT = "Illegal number of surfaces: %o. Must be 1,2 or 3.";

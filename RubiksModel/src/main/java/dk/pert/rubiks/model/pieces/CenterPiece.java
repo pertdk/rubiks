@@ -1,4 +1,6 @@
-package dk.pert.rubiks.rubiksmodel;
+package dk.pert.rubiks.model.pieces;
+
+import dk.pert.rubiks.model.interfaces.ISurface;
 
 /**
  * Place description here.
@@ -6,7 +8,7 @@ package dk.pert.rubiks.rubiksmodel;
  * @author PET@nykredit.dk
  */
 
-public class CenterPiece extends AbstractPiece implements IPiece {
+public class CenterPiece extends AbstractPiece {
 
     public CenterPiece(ISurface surface) {
         super(surface);

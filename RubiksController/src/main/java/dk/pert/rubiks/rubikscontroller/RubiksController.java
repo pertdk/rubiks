@@ -1,6 +1,6 @@
 package dk.pert.rubiks.rubikscontroller;
 
-import dk.pert.rubiks.rubiksmodel.Cube;
+import dk.pert.rubiks.model.Cube;
 
 
 /**

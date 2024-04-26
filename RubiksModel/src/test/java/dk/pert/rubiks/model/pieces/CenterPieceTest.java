@@ -43,44 +43,44 @@ class CenterPieceTest {
 
     @Test
     void testMoves() {
-        CenterPiece greenFront = new CenterPiece(new Surface(Color.GREEN, Direction.FRONT));
+        CenterPiece whiteFront = new CenterPiece(new Surface(Color.WHITE, Direction.FRONT));
         CenterPiece orangeLeft = new CenterPiece(new Surface(Color.ORANGE, Direction.LEFT));
-        CenterPiece blueBack = new CenterPiece(new Surface(Color.BLUE, Direction.BACK));
+        CenterPiece greenDown = new CenterPiece(new Surface(Color.GREEN, Direction.DOWN));
+        CenterPiece blueUp = new CenterPiece(new Surface(Color.BLUE, Direction.UP));
         CenterPiece redRight = new CenterPiece(new Surface(Color.RED, Direction.RIGHT));
-        CenterPiece whiteUp = new CenterPiece(new Surface(Color.WHITE, Direction.UP));
-        CenterPiece yellowDown = new CenterPiece(new Surface(Color.YELLOW, Direction.DOWN));
+        CenterPiece yellowBack = new CenterPiece(new Surface(Color.YELLOW, Direction.BACK));
 
         ArrayList<Move> moves = new ArrayList<>(List.of(Move.values()));
         for (Move move : moves) {
-            testMove(greenFront, Direction.FRONT, move);
+            testMove(greenDown, Direction.DOWN, move);
             testMove(orangeLeft, Direction.LEFT, move);
-            testMove(blueBack, Direction.BACK, move);
+            testMove(blueUp, Direction.UP, move);
             testMove(redRight, Direction.RIGHT, move);
-            testMove(whiteUp, Direction.UP, move);
-            testMove(yellowDown, Direction.DOWN, move);
+            testMove(whiteFront, Direction.FRONT, move);
+            testMove(yellowBack, Direction.BACK, move);
         }
 
     }
 
     @Test
     void testTurns() {
-        CenterPiece greenFront = new CenterPiece(new Surface(Color.GREEN, Direction.FRONT));
+        CenterPiece whiteFront = new CenterPiece(new Surface(Color.WHITE, Direction.FRONT));
         CenterPiece orangeLeft = new CenterPiece(new Surface(Color.ORANGE, Direction.LEFT));
-        CenterPiece blueBack = new CenterPiece(new Surface(Color.BLUE, Direction.BACK));
+        CenterPiece greenDown = new CenterPiece(new Surface(Color.GREEN, Direction.DOWN));
+        CenterPiece blueUp = new CenterPiece(new Surface(Color.BLUE, Direction.UP));
         CenterPiece redRight = new CenterPiece(new Surface(Color.RED, Direction.RIGHT));
-        CenterPiece whiteUp = new CenterPiece(new Surface(Color.WHITE, Direction.UP));
-        CenterPiece yellowDown = new CenterPiece(new Surface(Color.YELLOW, Direction.DOWN));
+        CenterPiece yellowBack = new CenterPiece(new Surface(Color.YELLOW, Direction.BACK));
 
         ArrayList<Turn> turns = new ArrayList<>(List.of(Turn.values()));
         ArrayList<Axis> axises = new ArrayList<>(List.of(Axis.values()));
         for (Turn turn : turns) {
             for (Axis axis : axises) {
-                testTurn(greenFront, Direction.FRONT, turn, axis);
+                testTurn(greenDown, Direction.DOWN, turn, axis);
                 testTurn(orangeLeft, Direction.LEFT, turn, axis);
-                testTurn(blueBack, Direction.BACK, turn, axis);
+                testTurn(blueUp, Direction.UP, turn, axis);
                 testTurn(redRight, Direction.RIGHT, turn, axis);
-                testTurn(whiteUp, Direction.UP, turn, axis);
-                testTurn(yellowDown, Direction.DOWN, turn, axis);
+                testTurn(whiteFront, Direction.FRONT, turn, axis);
+                testTurn(yellowBack, Direction.BACK, turn, axis);
             }
         }
 

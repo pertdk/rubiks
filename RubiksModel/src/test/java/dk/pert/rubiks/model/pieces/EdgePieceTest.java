@@ -37,37 +37,37 @@ class EdgePieceTest {
     }
 
     @Test
-    void testWhiteUpOrangeLeft() {
-        EdgePiece whiteUpOrangeLeft = new EdgePiece(new Surface(Color.WHITE, Direction.UP), new Surface(Color.ORANGE, Direction.LEFT));
-        rotationTest(whiteUpOrangeLeft, Move.LEFT, Direction.UP, Direction.LEFT, Direction.FRONT, Direction.LEFT, Direction.DOWN, Direction.LEFT, Direction.BACK, Direction.LEFT);
-        rotationTest(whiteUpOrangeLeft, Move.LEFT_INVERTED, Direction.UP, Direction.LEFT, Direction.BACK, Direction.LEFT, Direction.DOWN, Direction.LEFT, Direction.FRONT, Direction.LEFT);
-        rotationTest(whiteUpOrangeLeft, Move.RIGHT, Direction.UP, Direction.LEFT, Direction.UP, Direction.LEFT, Direction.UP, Direction.LEFT, Direction.UP, Direction.LEFT);
-        rotationTest(whiteUpOrangeLeft, Move.RIGHT_INVERTED, Direction.UP, Direction.LEFT, Direction.UP, Direction.LEFT, Direction.UP, Direction.LEFT, Direction.UP, Direction.LEFT);
-        rotationTest(whiteUpOrangeLeft, Move.BACK, Direction.UP, Direction.LEFT, Direction.UP, Direction.LEFT, Direction.UP, Direction.LEFT, Direction.UP, Direction.LEFT);
-        rotationTest(whiteUpOrangeLeft, Move.BACK_INVERTED, Direction.UP, Direction.LEFT, Direction.UP, Direction.LEFT, Direction.UP, Direction.LEFT, Direction.UP, Direction.LEFT);
-        rotationTest(whiteUpOrangeLeft, Move.FRONT, Direction.UP, Direction.LEFT, Direction.UP, Direction.LEFT, Direction.UP, Direction.LEFT, Direction.UP, Direction.LEFT);
-        rotationTest(whiteUpOrangeLeft, Move.FRONT_INVERTED, Direction.UP, Direction.LEFT, Direction.UP, Direction.LEFT, Direction.UP, Direction.LEFT, Direction.UP, Direction.LEFT);
-        rotationTest(whiteUpOrangeLeft, Move.DOWN, Direction.UP, Direction.LEFT, Direction.UP, Direction.LEFT, Direction.UP, Direction.LEFT, Direction.UP, Direction.LEFT);
-        rotationTest(whiteUpOrangeLeft, Move.DOWN_INVERTED, Direction.UP, Direction.LEFT, Direction.UP, Direction.LEFT, Direction.UP, Direction.LEFT, Direction.UP, Direction.LEFT);
-        rotationTest(whiteUpOrangeLeft, Move.UP, Direction.UP, Direction.LEFT, Direction.UP, Direction.BACK, Direction.UP, Direction.RIGHT, Direction.UP, Direction.FRONT);
-        rotationTest(whiteUpOrangeLeft, Move.UP_INVERTED, Direction.UP, Direction.LEFT, Direction.UP, Direction.FRONT, Direction.UP, Direction.RIGHT, Direction.UP, Direction.BACK);
+    void testWhiteFrontOrangeLeft() {
+        EdgePiece whiteFrontOrangeLeft = new EdgePiece(new Surface(Color.WHITE, Direction.FRONT), new Surface(Color.ORANGE, Direction.LEFT));
+        rotationTest(whiteFrontOrangeLeft, Move.LEFT, Direction.FRONT, Direction.LEFT, Direction.DOWN, Direction.LEFT, Direction.BACK, Direction.LEFT, Direction.UP, Direction.LEFT);
+        rotationTest(whiteFrontOrangeLeft, Move.LEFT_INVERTED, Direction.FRONT, Direction.LEFT, Direction.UP, Direction.LEFT, Direction.BACK, Direction.LEFT, Direction.DOWN, Direction.LEFT);
+        rotationTest(whiteFrontOrangeLeft, Move.RIGHT, Direction.FRONT, Direction.LEFT, Direction.FRONT, Direction.LEFT, Direction.FRONT, Direction.LEFT, Direction.FRONT, Direction.LEFT);
+        rotationTest(whiteFrontOrangeLeft, Move.RIGHT_INVERTED, Direction.FRONT, Direction.LEFT, Direction.FRONT, Direction.LEFT, Direction.FRONT, Direction.LEFT, Direction.FRONT, Direction.LEFT);
+        rotationTest(whiteFrontOrangeLeft, Move.BACK, Direction.FRONT, Direction.LEFT, Direction.FRONT, Direction.LEFT, Direction.FRONT, Direction.LEFT, Direction.FRONT, Direction.LEFT);
+        rotationTest(whiteFrontOrangeLeft, Move.BACK_INVERTED, Direction.FRONT, Direction.LEFT, Direction.FRONT, Direction.LEFT, Direction.FRONT, Direction.LEFT, Direction.FRONT, Direction.LEFT);
+        rotationTest(whiteFrontOrangeLeft, Move.FRONT, Direction.FRONT, Direction.LEFT, Direction.FRONT, Direction.UP, Direction.FRONT, Direction.RIGHT, Direction.FRONT, Direction.DOWN);
+        rotationTest(whiteFrontOrangeLeft, Move.FRONT_INVERTED, Direction.FRONT, Direction.LEFT, Direction.FRONT, Direction.DOWN, Direction.FRONT, Direction.RIGHT, Direction.FRONT, Direction.UP);
+        rotationTest(whiteFrontOrangeLeft, Move.DOWN, Direction.FRONT, Direction.LEFT, Direction.FRONT, Direction.LEFT, Direction.FRONT, Direction.LEFT, Direction.FRONT, Direction.LEFT);
+        rotationTest(whiteFrontOrangeLeft, Move.DOWN_INVERTED, Direction.FRONT, Direction.LEFT, Direction.FRONT, Direction.LEFT, Direction.FRONT, Direction.LEFT, Direction.FRONT, Direction.LEFT);
+        rotationTest(whiteFrontOrangeLeft, Move.UP, Direction.FRONT, Direction.LEFT, Direction.FRONT, Direction.LEFT, Direction.FRONT, Direction.LEFT, Direction.FRONT, Direction.LEFT);
+        rotationTest(whiteFrontOrangeLeft, Move.UP_INVERTED, Direction.FRONT, Direction.LEFT, Direction.FRONT, Direction.LEFT, Direction.FRONT, Direction.LEFT, Direction.FRONT, Direction.LEFT);
     }
 
     @Test
-    void testWhiteUpBlueBack() {
-        EdgePiece whiteUpBlueBack = new EdgePiece(new Surface(Color.WHITE, Direction.UP), new Surface(Color.BLUE, Direction.BACK));
-        rotationTest(whiteUpBlueBack, Move.LEFT, Direction.UP, Direction.BACK, Direction.UP, Direction.BACK, Direction.UP, Direction.BACK, Direction.UP, Direction.BACK);
-        rotationTest(whiteUpBlueBack, Move.LEFT_INVERTED, Direction.UP, Direction.BACK, Direction.UP, Direction.BACK, Direction.UP, Direction.BACK, Direction.UP, Direction.BACK);
-        rotationTest(whiteUpBlueBack, Move.RIGHT, Direction.UP, Direction.BACK, Direction.UP, Direction.BACK, Direction.UP, Direction.BACK, Direction.UP, Direction.BACK);
-        rotationTest(whiteUpBlueBack, Move.RIGHT_INVERTED, Direction.UP, Direction.BACK, Direction.UP, Direction.BACK, Direction.UP, Direction.BACK, Direction.UP, Direction.BACK);
-        rotationTest(whiteUpBlueBack, Move.BACK, Direction.UP, Direction.BACK, Direction.LEFT, Direction.BACK, Direction.DOWN, Direction.BACK, Direction.RIGHT, Direction.BACK);
-        rotationTest(whiteUpBlueBack, Move.BACK_INVERTED, Direction.UP, Direction.BACK, Direction.RIGHT, Direction.BACK, Direction.DOWN, Direction.BACK, Direction.LEFT, Direction.BACK);
-        rotationTest(whiteUpBlueBack, Move.FRONT, Direction.UP, Direction.BACK, Direction.UP, Direction.BACK, Direction.UP, Direction.BACK, Direction.UP, Direction.BACK);
-        rotationTest(whiteUpBlueBack, Move.FRONT_INVERTED, Direction.UP, Direction.BACK, Direction.UP, Direction.BACK, Direction.UP, Direction.BACK, Direction.UP, Direction.BACK);
-        rotationTest(whiteUpBlueBack, Move.UP, Direction.UP, Direction.BACK, Direction.UP, Direction.RIGHT, Direction.UP, Direction.FRONT, Direction.UP, Direction.LEFT);
-        rotationTest(whiteUpBlueBack, Move.UP_INVERTED, Direction.UP, Direction.BACK, Direction.UP, Direction.LEFT, Direction.UP, Direction.FRONT, Direction.UP, Direction.RIGHT);
-        rotationTest(whiteUpBlueBack, Move.DOWN, Direction.UP, Direction.BACK, Direction.UP, Direction.BACK, Direction.UP, Direction.BACK, Direction.UP, Direction.BACK);
-        rotationTest(whiteUpBlueBack, Move.DOWN_INVERTED, Direction.UP, Direction.BACK, Direction.UP, Direction.BACK, Direction.UP, Direction.BACK, Direction.UP, Direction.BACK);
+    void testWhiteFrontBlueUp() {
+        EdgePiece whiteFrontBlueUp = new EdgePiece(new Surface(Color.WHITE, Direction.FRONT), new Surface(Color.BLUE, Direction.UP));
+        rotationTest(whiteFrontBlueUp, Move.LEFT, Direction.FRONT, Direction.UP, Direction.FRONT, Direction.UP, Direction.FRONT, Direction.UP, Direction.FRONT, Direction.UP);
+        rotationTest(whiteFrontBlueUp, Move.LEFT_INVERTED, Direction.FRONT, Direction.UP, Direction.FRONT, Direction.UP, Direction.FRONT, Direction.UP, Direction.FRONT, Direction.UP);
+        rotationTest(whiteFrontBlueUp, Move.RIGHT, Direction.FRONT, Direction.UP, Direction.FRONT, Direction.UP, Direction.FRONT, Direction.UP, Direction.FRONT, Direction.UP);
+        rotationTest(whiteFrontBlueUp, Move.RIGHT_INVERTED, Direction.FRONT, Direction.UP, Direction.FRONT, Direction.UP, Direction.FRONT, Direction.UP, Direction.FRONT, Direction.UP);
+        rotationTest(whiteFrontBlueUp, Move.BACK, Direction.FRONT, Direction.UP, Direction.FRONT, Direction.UP, Direction.FRONT, Direction.UP, Direction.FRONT, Direction.UP);
+        rotationTest(whiteFrontBlueUp, Move.BACK_INVERTED, Direction.FRONT, Direction.UP, Direction.FRONT, Direction.UP, Direction.FRONT, Direction.UP, Direction.FRONT, Direction.UP);
+        rotationTest(whiteFrontBlueUp, Move.FRONT, Direction.FRONT, Direction.UP, Direction.FRONT, Direction.RIGHT, Direction.FRONT, Direction.DOWN, Direction.FRONT, Direction.LEFT);
+        rotationTest(whiteFrontBlueUp, Move.FRONT_INVERTED, Direction.FRONT, Direction.UP, Direction.FRONT, Direction.LEFT, Direction.FRONT, Direction.DOWN, Direction.FRONT, Direction.RIGHT);
+        rotationTest(whiteFrontBlueUp, Move.UP, Direction.FRONT, Direction.UP, Direction.LEFT, Direction.UP, Direction.BACK, Direction.UP, Direction.RIGHT, Direction.UP);
+        rotationTest(whiteFrontBlueUp, Move.UP_INVERTED, Direction.FRONT, Direction.UP, Direction.RIGHT, Direction.UP, Direction.BACK, Direction.UP, Direction.LEFT, Direction.UP);
+        rotationTest(whiteFrontBlueUp, Move.DOWN, Direction.FRONT, Direction.UP, Direction.FRONT, Direction.UP, Direction.FRONT, Direction.UP, Direction.FRONT, Direction.UP);
+        rotationTest(whiteFrontBlueUp, Move.DOWN_INVERTED, Direction.FRONT, Direction.UP, Direction.FRONT, Direction.UP, Direction.FRONT, Direction.UP, Direction.FRONT, Direction.UP);
     }
 
     @Test

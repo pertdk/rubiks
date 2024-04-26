@@ -11,5 +11,23 @@ package dk.pert.rubiks.model.enums;
  */
 
 public enum Color {
-    GREEN, BLUE, ORANGE, RED, WHITE, YELLOW
+    GREEN('G'),
+    BLUE('B'),
+    ORANGE('O'),
+    RED('R'),
+    WHITE('W'),
+    YELLOW('Y');
+
+    private final char color;
+
+    Color(char color) {
+        this.color = color;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(this.color);
+    }
+
+
 }

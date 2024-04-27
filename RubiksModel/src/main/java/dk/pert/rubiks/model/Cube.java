@@ -184,13 +184,26 @@ public class Cube {
     }
 
     public void rotateLeft() {
-        IPiece[][] leftPieces = pieces[LEFT];
-        for (IPiece[] llPieces : leftPieces) {
-            for (IPiece lPiece : llPieces) {
-                lPiece.moveLeft();
-                System.out.println(lPiece);
-            }
-        }
+        IPiece leftTopFrontCorner = pieces[LEFT][TOP][FRONT];
+        pieces[LEFT][TOP][FRONT] = pieces[LEFT][TOP][BACK];
+        pieces[LEFT][TOP][FRONT].moveLeft();
+        pieces[LEFT][TOP][BACK] = pieces[LEFT][BOTTOM][BACK];
+        pieces[LEFT][TOP][BACK].moveLeft();
+        pieces[LEFT][BOTTOM][BACK] = pieces[LEFT][BOTTOM][FRONT];
+        pieces[LEFT][BOTTOM][BACK].moveLeft();
+        pieces[LEFT][BOTTOM][FRONT] = leftTopFrontCorner;
+        pieces[LEFT][BOTTOM][FRONT].moveLeft();
+
+        IPiece leftTopCenterEdge = pieces[LEFT][TOP][CENTER];
+        pieces[LEFT][TOP][CENTER] = pieces[LEFT][CENTER][BACK];
+        pieces[LEFT][TOP][CENTER].moveLeft();
+        pieces[LEFT][CENTER][BACK] = pieces[LEFT][BOTTOM][CENTER];
+        pieces[LEFT][CENTER][BACK].moveLeft();
+        pieces[LEFT][BOTTOM][CENTER] = pieces[LEFT][CENTER][FRONT];
+        pieces[LEFT][BOTTOM][CENTER].moveLeft();
+        pieces[LEFT][CENTER][FRONT] = leftTopCenterEdge;
+        pieces[LEFT][CENTER][FRONT].moveLeft();
+
     }
 
 

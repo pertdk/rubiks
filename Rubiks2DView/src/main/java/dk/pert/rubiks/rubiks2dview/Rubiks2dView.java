@@ -31,7 +31,7 @@ OOO WWW RRR
  */
 
         rubiksController.rotateLeft();
-
+        System.out.println("\n");
         System.out.println(rubiksController.get2DTextual());
 /*
     YBB

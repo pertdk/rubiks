@@ -38,7 +38,6 @@ class CenterPieceTest {
                 assertFalse(centerPiece.hasSurface(other));
             }
         }
-
     }
 
     @Test

@@ -24,7 +24,7 @@ class SurfaceTest {
     }
 
     @Test
-    void testMoveLeft() {
+    void testMove() {
         Surface greenDown = new Surface(Color.GREEN, Direction.DOWN);
         Surface orangeLeft = new Surface(Color.ORANGE, Direction.LEFT);
         Surface redRight = new Surface(Color.RED, Direction.RIGHT);
